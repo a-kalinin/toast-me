@@ -20,9 +20,9 @@ const SALT = 'jkgRhtT46rx2hgfMDjH';
 
 function salted(text) { return `${text}--${SALT}`; }
 
-function setClass(node, classes) {
+function setClass(node, classes: string) {
   const arr = classes.split(' ');
-  arr.forEach(cls => node.classList.add(cls));
+  // arr.forEach(cls => node.classList.add(cls));
 }
 
 
@@ -68,6 +68,14 @@ class Toast {
     this.container.appendChild(this.domNode);
     this.startTimer();
   }
+
+  options: ToastOptionsType;
+
+  content: string;
+
+  container: Element;
+
+  domNode: Element;
 
   createToastNode(action?: ToastActionType) {
     const node = document.createElement('div');

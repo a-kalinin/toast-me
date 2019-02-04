@@ -23,18 +23,7 @@
           "./src"
         ],
         "alias": {
-          "assets": "./src/assets",
-          "actions": "./src/store/actions",
-          "actionTypes": "./src/store/actionTypes",
-          "reducers": "./src/store/reducers",
-          "thunk": "./src/store/thunk",
-          "store": "./src/store",
           "components": "./src/components",
-          "UI": "./src/components/UI",
-          "containers": "./src/containers",
-          "routes": "./src/routes",
-          "utils": "./src/global/utils",
-          "data": "./src/global/data"
         }
       }
     ]
