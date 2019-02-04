@@ -37,7 +37,7 @@ module.exports = {
   entry: [require.resolve('./polyfills'), paths.libIndexJs],
   output: {
     path: paths.libBuild,
-    filename: `${libraryName}.js`,
+    filename: `${libraryName}.min.js`,
     chunkFilename: `${libraryName}.js`,
     library: libraryName,
     libraryTarget: 'umd',
