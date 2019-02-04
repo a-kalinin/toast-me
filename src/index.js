@@ -1,13 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
+// @flow
+import ToastMe from './toastMe';
+import options from './optionsLib';
 
-import App from './containers/app/App';
-import './assets/index.scss';
+import type { ToastActionType, ToastOptionsType } from './types';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
+export {
+  options,
+};
 
-registerServiceWorker();
+export default function (
+  content: string,
+  receivedOptions?: null | ToastOptionsType | 'error' | 'notify' = 'notify',
+  action?: ToastActionType,
+) {
+  return new ToastMe(content, receivedOptions, action);
+}

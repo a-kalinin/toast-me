@@ -18,7 +18,7 @@ const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const config = require('../config/webpack.config.prod2');
+const config = require('../config/webpack.config.dev');
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -48,7 +48,7 @@ measureFileSizesBeforeBuild(paths.libBuild)
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.libBuild);
     // Start the webpack build
-    return build(previousFileSizes);
+    return buildProd(previousFileSizes);
   })
   .then(
     ({ stats, previousFileSizes, warnings }) => {
@@ -99,7 +99,7 @@ measureFileSizesBeforeBuild(paths.libBuild)
   );
 
 // Create the production build and print the deployment instructions.
-function build(previousFileSizes) {
+function buildProd(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
   let compiler = webpack(config);

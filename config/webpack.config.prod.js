@@ -73,7 +73,7 @@ module.exports = {
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path
-        .relative(paths.appSrc, info.absoluteResourcePath)
+        .relative(paths.libSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
   },
   resolve: {
@@ -87,7 +87,7 @@ module.exports = {
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
-      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+      new ModuleScopePlugin(paths.libSrc, [paths.appPackageJson]),
     ],
   },
   module: {
@@ -132,7 +132,7 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include: paths.libSrc,
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
