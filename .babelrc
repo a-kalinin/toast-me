@@ -1,0 +1,70 @@
+{
+  "presets": [
+    "react-app",
+    "flow"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "react-css-modules",
+      {
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        },
+        "generateScopedName": "[name]__[local]___[hash:base64:5]"
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "assets": "./src/assets",
+          "actions": "./src/store/actions",
+          "actionTypes": "./src/store/actionTypes",
+          "reducers": "./src/store/reducers",
+          "thunk": "./src/store/thunk",
+          "store": "./src/store",
+          "components": "./src/components",
+          "UI": "./src/components/UI",
+          "containers": "./src/containers",
+          "routes": "./src/routes",
+          "utils": "./src/global/utils",
+          "data": "./src/global/data"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "flow-runtime",
+          {
+            "assert": true,
+            "annotate": true
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env"
+        ],
+        "react-app"
+      ],
+      "plugins": [
+        "transform-decorators-legacy"
+      ],
+      "only": [
+        "./**/*.js",
+        "node_modules/jest-runtime"
+      ]
+    }
+  }
+}
