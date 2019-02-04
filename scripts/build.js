@@ -36,17 +36,17 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.packageIndexJs, paths.packageIndexSCSS])) {
+if (!checkRequiredFiles([paths.libIndexJs, paths.libIndexScss])) {
   process.exit(1);
 }
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
-measureFileSizesBeforeBuild(paths.packageBuild)
+measureFileSizesBeforeBuild(paths.libBuild)
   .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.packageBuild);
+    fs.emptyDirSync(paths.libBuild);
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -73,7 +73,7 @@ measureFileSizesBeforeBuild(paths.packageBuild)
       printFileSizesAfterBuild(
         stats,
         previousFileSizes,
-        paths.packageBuild,
+        paths.libBuild,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
       );
@@ -82,7 +82,7 @@ measureFileSizesBeforeBuild(paths.packageBuild)
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrl;
       const publicPath = config.output.publicPath;
-      const buildFolder = path.relative(process.cwd(), paths.packageBuild);
+      const buildFolder = path.relative(process.cwd(), paths.libBuild);
       printHostingInstructions(
         appPackage,
         publicUrl,

@@ -1,10 +1,10 @@
-#toast-ui-container--jkgRhtT46rx2hgfMDjH{
+.container{
   position: fixed;
   top: 0;
   width: 100%;
   color: #fff;
 
-  .toast--jkgRhtT46rx2hgfMDjH{
+  .toast{
     height: 48px;
     width: 40%;
     min-width: 270px;
@@ -39,7 +39,7 @@
       }
     }
 
-    .message--jkgRhtT46rx2hgfMDjH{
+    .message{
       flex: 1 1;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -66,7 +66,7 @@
       }
     }
 
-    .action--jkgRhtT46rx2hgfMDjH{
+    .action{
       flex-shrink: 0;
       flex-grow: 0;
       padding: 0 8px;
@@ -74,7 +74,7 @@
       color: #0B8AFF;
     }
 
-    .close--jkgRhtT46rx2hgfMDjH{
+    .close{
       flex: 0 0 24px;
       width: 24px;
       height: 24px;
@@ -99,19 +99,18 @@
         transform: translateX(-50%) rotate(135deg);
       }
 
-      &.hidden--jkgRhtT46rx2hgfMDjH{
+      &.hidden{
         display: none;
       }
     }
 
-    &.remove--jkgRhtT46rx2hgfMDjH{
+    &.remove{
       transform: translate(-50%, 0);
       animation: toast-out 200ms forwards;
     }
 
-    &.error--jkgRhtT46rx2hgfMDjH{
+    &.error{
       background-color: #D40D00;
     }
-
   }
 }

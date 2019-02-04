@@ -1,50 +1,15 @@
 // @flow
+import ToastOptions from './optionsLib';
+import {
+  setClass,
+  DEFAULT_TIMEOUT_BEFORE_REMOVE,
+  DEFAULT_SHOW_DURATION,
+} from './helper';
+import styles from './index.scss';
 
-export type ToastOptionsType = {
-  position?: string,
-  toastClass?: string,
-  removedToastClass?: string,
-  closeable?: boolean,
-  showAll?: boolean,
-  timeoutOnRemove?: number,
-  showDuration?: number,
-};
+import type { ToastActionType, ToastOptionsType } from './types';
 
-export type ToastActionType = {
-  name: string,
-  action: () => void,
-  class?: string,
-};
-
-const SALT = 'jkgRhtT46rx2hgfMDjH';
-
-function salted(text) { return `${text}--${SALT}`; }
-
-function setClass(node, classes: string) {
-  const arr = classes.split(' ');
-  // arr.forEach(cls => node.classList.add(cls));
-}
-
-
-const CONTAINER_ID = salted('toast-ui-container');
-
-const DEFAULT_TIMEOUT_BEFORE_REMOVE = 1000;
-const DEFAULT_SHOW_DURATION = 5000;
-
-export const ToastOptions: { [string]: ToastOptionsType } = {
-  error: {
-    toastClass: salted('error'),
-    timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
-    showDuration: DEFAULT_SHOW_DURATION,
-  },
-  notify: {
-    timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
-    showDuration: DEFAULT_SHOW_DURATION,
-  },
-};
-
-
-class Toast {
+export default class ToastMe {
   /**
    * @param content {String} - text to show
    * @param receivedOptions {Object} - options object
@@ -55,7 +20,7 @@ class Toast {
     receivedOptions?: null | ToastOptionsType | 'error' | 'notify' = 'notify',
     action?: ToastActionType,
   ) {
-    Toast.removeAll();
+    ToastMe.removeAll();
 
     const options = typeof receivedOptions === 'string'
       ? ToastOptions[receivedOptions]
@@ -63,7 +28,7 @@ class Toast {
 
     this.options = options || {};
     this.content = content;
-    this.container = Toast.getContainer();
+    this.container = ToastMe.getContainer();
     this.domNode = this.createToastNode(action);
     this.container.appendChild(this.domNode);
     this.startTimer();
@@ -79,10 +44,10 @@ class Toast {
 
   createToastNode(action?: ToastActionType) {
     const node = document.createElement('div');
-    setClass(node, salted('toast'));
+    setClass(node, styles.toast);
 
     const messageNode = document.createElement('div');
-    setClass(messageNode, salted('message'));
+    setClass(messageNode, styles.message);
     messageNode.textContent = this.content;
     node.appendChild(messageNode);
     node.title = this.content;
@@ -93,7 +58,7 @@ class Toast {
 
     if (action) {
       const actionNode = document.createElement('button');
-      setClass(actionNode, salted('action'));
+      setClass(actionNode, styles.action);
       if (action.class) {
         setClass(actionNode, action.class);
       }
@@ -107,9 +72,9 @@ class Toast {
     }
 
     const closeNode = document.createElement('button');
-    setClass(closeNode, salted('close'));
+    setClass(closeNode, styles.close);
     if (this.options && this.options.closeable) {
-      setClass(closeNode, salted('hidden'));
+      setClass(closeNode, styles.hidden);
     }
     closeNode.title = 'Close';
     closeNode.addEventListener('click', () => this.close());
@@ -121,19 +86,21 @@ class Toast {
     return node;
   }
 
-  static getContainer() {
-    let node = document.getElementById(CONTAINER_ID);
+  static getContainer(): Element {
+    // eslint-disable-next-line prefer-template
+    let node = document.querySelector('.' + styles.container);
     if (!node) {
       node = document.createElement('div');
-      node.id = CONTAINER_ID;
+      node.classList.add(styles.container);
       document.body.appendChild(node);
     }
     return node;
   }
 
   static removeAll() {
-    const container = Toast.getContainer();
-    const closeButtons = container.querySelectorAll(`.${salted('close')}`);
+    const node = ToastMe.getContainer();
+    // eslint-disable-next-line prefer-template
+    const closeButtons = node.querySelectorAll('.' + styles.close);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
       closeButtons[i].click();
     }
@@ -143,7 +110,7 @@ class Toast {
     this.stopTimer();
     if (!this.domNode) return;
 
-    setClass(this.domNode, salted('remove'));
+    setClass(this.domNode, styles.remove);
     if (this.options.removedToastClass) {
       setClass(this.domNode, this.options.removedToastClass);
     }
@@ -164,12 +131,4 @@ class Toast {
   stopTimer() {
     clearTimeout(this.timerShow);
   }
-}
-
-export default function (
-  content: string,
-  receivedOptions?: null | ToastOptionsType | 'error' | 'notify' = 'notify',
-  action?: ToastActionType,
-) {
-  return new Toast(content, receivedOptions, action);
 }
