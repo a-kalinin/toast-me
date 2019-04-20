@@ -21,7 +21,7 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
-const libraryName = 'toast-me';
+const libraryName = 'toast-me_1';
 const cssFilename = `${libraryName}.css`;
 
 // This is the development configuration.

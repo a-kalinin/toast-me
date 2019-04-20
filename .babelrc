@@ -1,58 +1,13 @@
 {
   "presets": [
-    "react-app",
-    "flow"
+    "@babel/env",
+    "@babel/flow"
   ],
-  "plugins": [
-    "transform-decorators-legacy",
-    [
-      "react-css-modules",
-      {
-        "filetypes": {
-          ".scss": {
-            "syntax": "postcss-scss"
-          }
-        },
-        "generateScopedName": "[name]__[local]___[hash:base64:5]"
-      }
-    ],
-    [
-      "module-resolver",
-      {
-        "root": [
-          "./src"
-        ],
-        "alias": {
-          "components": "./src/components",
-        }
-      }
-    ]
-  ],
+  "plugins": ["babel-plugin-add-module-exports"],
   "env": {
-    "development": {
-      "plugins": [
-        [
-          "flow-runtime",
-          {
-            "assert": true,
-            "annotate": true
-          }
-        ]
-      ]
-    },
     "test": {
-      "presets": [
-        [
-          "env"
-        ],
-        "react-app"
-      ],
       "plugins": [
-        "transform-decorators-legacy"
-      ],
-      "only": [
-        "./**/*.js",
-        "node_modules/jest-runtime"
+        ["istanbul"]
       ]
     }
   }

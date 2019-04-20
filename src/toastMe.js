@@ -1,5 +1,5 @@
 // @flow
-import ToastOptions from './optionsLib';
+import getOptions from './optionsLib';
 import {
   setClass,
   DEFAULT_TIMEOUT_BEFORE_REMOVE,
@@ -23,7 +23,7 @@ export default class ToastMe {
     ToastMe.removeAll();
 
     const options = typeof receivedOptions === 'string'
-      ? ToastOptions[receivedOptions]
+      ? getOptions()[receivedOptions]
       : receivedOptions;
 
     this.options = options || {};

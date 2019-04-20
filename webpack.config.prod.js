@@ -33,7 +33,7 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 }
 
 // Note: defined here because it will be used more than once.
-const libraryName = 'toast-me';
+const libraryName = 'toast-me_1';
 const cssFilename = `${libraryName}.css`;
 
 // ExtractTextPlugin expects the build output to be flat.

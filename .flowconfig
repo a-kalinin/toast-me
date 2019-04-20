@@ -11,13 +11,7 @@ esproposal.class_instance_fields=enable
 esproposal.export_star_as=enable
 esproposal.decorators=ignore
 module.name_mapper.extension='css' -> '<PROJECT_ROOT>/internals/flow/CSSModule.js.flow'
-module.name_mapper.extension='styl' -> '<PROJECT_ROOT>/internals/flow/CSSModule.js.flow'
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/internals/flow/CSSModule.js.flow'
-module.name_mapper.extension='png' -> '<PROJECT_ROOT>/internals/flow/WebpackAsset.js.flow'
-module.name_mapper.extension='jpg' -> '<PROJECT_ROOT>/internals/flow/WebpackAsset.js.flow'
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
-module.system.node.resolve_dirname=src/store
-module.system.node.resolve_dirname=src/components
-module.system.node.resolve_dirname=src/global
 [version]
