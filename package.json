@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
+    "test": "node test/index.js --env=jsdom --config jest.config.js",
     "repl": "node -i -e \"$(< ./lib/toast-me.js)\""
   },
   "repository": {
@@ -49,6 +50,7 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-flowtype": "^3.6.1",
     "flow-bin": "^0.97.0",
+    "jest": "^24.7.1",
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
     "node-sass": "^4.11.0",

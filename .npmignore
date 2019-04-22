@@ -36,3 +36,6 @@ npm-debug.log
 
 test
 dev
+
+**/*.test.js
+**/__tests__
