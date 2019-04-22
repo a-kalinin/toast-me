@@ -3,8 +3,8 @@ module.exports = {
     'src/**/*.{js,jsx,mjs}',
   ],
   setupFiles: [
-    '<rootDir>/config/polyfills.js',
-    '<rootDir>/config/jestSetup.js',
+    '<rootDir>/test/config/polyfills.js',
+    '<rootDir>/test/config/jestSetup.js',
   ],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
@@ -14,8 +14,8 @@ module.exports = {
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
-    '^.+\\.css$': '<rootDir>/config/cssTransform.js',
-    '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/config/fileTransform.js',
+    '^.+\\.css$': '<rootDir>/test/config/cssTransform.js',
+    '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/test/config/fileTransform.js',
   },
   transformIgnorePatterns: [
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$',
