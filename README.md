@@ -2,7 +2,9 @@
 
 Tool to show toasts
 
-![Travis](https://travis-ci.org/krasimir/webpack-library-starter.svg?branch=master)
+WORK IN PROCESS
+
+[![Build Status](https://travis-ci.org/a-kalinin/toast-me.svg?branch=master)](https://travis-ci.org/a-kalinin/toast-me)
 
 ## Features
 

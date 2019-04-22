@@ -20,4 +20,4 @@ const ToastOptions: { [string]: ToastOptionsType } = {
   },
 };
 
-export default () => ToastOptions;
+export default ToastOptions;

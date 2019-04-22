@@ -3,3 +3,9 @@ node_js:
   - "node"
   - "7"
   - "6"
+before_install:
+#  - "npm install -g npm"
+  - "npm config set spin false"
+#before_script:
+#  - "npm install jshint"
+#  - "npm install mocha"

@@ -1,12 +1,12 @@
 // @flow
 import ToastMe from './toastMe';
-import getOptions from './optionsLib';
+import ToastOptions from './optionsLib';
 
 import type { ToastActionType, ToastOptionsType } from './types';
 
-// export {
-//   getOptions,
-// };
+export {
+  ToastOptions,
+};
 
 export default function (
   content: string,

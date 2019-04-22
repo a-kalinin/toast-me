@@ -1,10 +1,10 @@
 {
   "name": "toast-me",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Creates toast messages",
-  "main": "lib/toast-me.min.js",
+  "main": "lib/toast-me.js",
   "scripts": {
-    "build": "webpack --env dev && webpack --env build && npm run test",
+    "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "repl": "node -i -e \"$(< ./lib/toast-me.js)\""
   },
@@ -15,11 +15,14 @@
   "keywords": [
     "webpack",
     "es6",
-    "starter",
     "library",
     "universal",
     "umd",
-    "commonjs"
+    "toast",
+    "commonjs",
+    "notify",
+    "error",
+    "notification"
   ],
   "author": "Alex Kalinin",
   "license": "MIT",
