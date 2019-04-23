@@ -5,6 +5,7 @@ const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
 const autoprefixer = require('autoprefixer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 let libraryName = pkg.name;
 
@@ -81,8 +82,15 @@ const config = {
       }
     ]
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+  ],
   resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
+    modules: [
+      path.resolve('./node_modules'),
+      path.resolve('./src'),
+      path.resolve('./lib'),
+    ],
     extensions: ['.json', '.js']
   }
 };

@@ -1,12 +1,13 @@
 {
   "name": "toast-me",
-  "version": "1.0.3",
+  "version": "1.0.11",
   "description": "Creates toast messages",
-  "main": "lib/toast-me.js",
+  "main": "lib/toast-me.min.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
-    "dev": "webpack --progress --colors --watch --env dev",
-    "test": "node test/index.js --env=jsdom --config jest.config.js",
+    "dev-server": "concurrently \"yarn watch\" \"node dev/dev-server\"",
+    "watch": "webpack --progress --colors --watch --env dev",
+    "test": "node scripts/test.js --env=jsdom --config scripts/config/jest.config.js",
     "repl": "node -i -e \"$(< ./lib/toast-me.js)\""
   },
   "repository": {
@@ -44,6 +45,8 @@
     "babel-plugin-flow-runtime": "^0.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^7.0.0-beta.3",
+    "chalk": "^2.4.2",
+    "clean-webpack-plugin": "^2.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
@@ -64,6 +67,7 @@
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.12.2",
     "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.3.1",
     "yargs": "^10.0.3"
   },
   "nyc": {
