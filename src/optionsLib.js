@@ -1,8 +1,6 @@
 // @flow
-import {
-  DEFAULT_TIMEOUT_BEFORE_REMOVE,
-  DEFAULT_SHOW_DURATION,
-} from './helper';
+export const DEFAULT_TIMEOUT_BEFORE_REMOVE = 1000;
+export const DEFAULT_SHOW_DURATION = 5000;
 
 import styles from './index.scss';
 
