@@ -1,13 +1,9 @@
-import Lib, { test as t } from '../index';
-import chalk from 'chalk';
-
-console.log('my beverage test1');
+import Lib from '../index';
 
 const myBeverage = {
   delicious: true,
   sour: false,
   lib: Lib,
-  test: t,
 };
 
 describe('my beverage', () => {
@@ -17,10 +13,5 @@ describe('my beverage', () => {
 
   test('is not sour', () => {
     expect(myBeverage.sour).toBeFalsy();
-  });
-
-  test('run my test', () => {
-    console.log(chalk.green('run my test'));
-    expect(t).toEqual('my test');
   });
 });

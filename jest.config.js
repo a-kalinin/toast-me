@@ -1,11 +1,6 @@
-const path = require('path');
-const fs = require('fs');
 const chalk = require('chalk');
 
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-
-console.log(chalk.green('Reading config from root'));
+console.log(chalk.green('Reading jest config'));
 
 module.exports = {
   verbose: true,
@@ -17,16 +12,8 @@ module.exports = {
     '<rootDir>/scripts/config/jestSetup.js',
   ],
   testMatch: [
-    // resolveApp('src/*/__tests__/**/*.js'),
-    // resolveApp('src/__tests__/**/*.js'),
-    // resolveApp('src/__tests__/*.js'),
-    // '<rootDir>/../../src/**/__tests__/**/*.js}',
-    // '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}}',
-    // '<rootDir>/src/**/+(*.)(spec|test).{js,jsx,mjs}',
-    // resolveApp('**/+(*.)(spec|test).{js,jsx,mjs}'),
     '**/+(*).(spec|test).{js,jsx,mjs}',
     '**/__tests__/**/+(*.)(spec|test).{js,jsx,mjs}',
-    // '<rootDir>/dev/**/+(*.)(spec|test).{js,jsx,mjs}',
   ],
   testEnvironment: 'node',
   testURL: 'http://localhost',
