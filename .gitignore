@@ -33,3 +33,6 @@ npm-debug.log
 .vscode
 
 .DS_Store
+
+
+/dev/toast-me.*
