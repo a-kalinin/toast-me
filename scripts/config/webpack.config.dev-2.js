@@ -3,9 +3,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
-const pkg = require('./package.json');
+const pkg = require('../../package.json');
 const autoprefixer = require('autoprefixer');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 let libraryName = pkg.name;
 
@@ -22,7 +21,7 @@ if (env === 'build') {
 const config = {
   bail: true,
   mode: mode,
-  entry: __dirname + '/src/index.js',
+  entry: __dirname + '/dev/script.js',
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
@@ -83,14 +82,10 @@ const config = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
-    modules: [
-      path.resolve('./node_modules'),
-      path.resolve('./src'),
-      path.resolve('./lib'),
-    ],
+    modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
   }
 };

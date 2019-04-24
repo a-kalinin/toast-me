@@ -9,7 +9,7 @@ import styles from './index.scss';
 
 import type { ToastActionType, ToastOptionsType } from './types';
 
-export default class ToastMe {
+class ToastMeClass {
   /**
    * @param content {String} - text to show
    * @param receivedOptions {Object} - options object
@@ -20,7 +20,7 @@ export default class ToastMe {
     receivedOptions?: null | ToastOptionsType | 'error' | 'notify' = 'notify',
     action?: ToastActionType,
   ) {
-    ToastMe.removeAll();
+    ToastMeClass.removeAll();
 
     const options = typeof receivedOptions === 'string'
       ? ToastOptions()[receivedOptions]
@@ -28,7 +28,7 @@ export default class ToastMe {
 
     this.options = options || {};
     this.content = content;
-    this.container = ToastMe.getContainer();
+    this.container = ToastMeClass.getContainer();
     this.domNode = this.createToastNode(action);
     this.container.appendChild(this.domNode);
     this.startTimer();
@@ -98,7 +98,7 @@ export default class ToastMe {
   }
 
   static removeAll() {
-    const node = ToastMe.getContainer();
+    const node = ToastMeClass.getContainer();
     // eslint-disable-next-line prefer-template
     const closeButtons = node.querySelectorAll('.' + styles.close);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
@@ -132,3 +132,12 @@ export default class ToastMe {
     clearTimeout(this.timerShow);
   }
 }
+
+export default function (
+  content,
+  receivedOptions,
+  action,
+) {
+  return new ToastMeClass(content, receivedOptions, action);
+};
+export { ToastOptions };

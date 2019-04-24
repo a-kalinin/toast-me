@@ -2,13 +2,17 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const env = require('yargs').argv.env; // use --env with webpack 2
-const pkg = require('./package.json');
 const autoprefixer = require('autoprefixer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const pkg = require('../../package.json');
 
 let libraryName = pkg.name;
 
 let outputFile, mode;
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 if (env === 'build') {
   mode = 'production';
@@ -21,10 +25,9 @@ if (env === 'build') {
 const config = {
   bail: true,
   mode: mode,
-  entry: __dirname + '/dev/script.js',
-  devtool: 'source-map',
+  entry: resolveApp('src/index.js'),
   output: {
-    path: __dirname + '/lib',
+    path: resolveApp('lib'),
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
@@ -82,10 +85,13 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
   ],
   resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
+    modules: [
+      path.resolve('./node_modules'),
+      path.resolve('./src'),
+    ],
     extensions: ['.json', '.js']
   }
 };

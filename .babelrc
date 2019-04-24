@@ -3,7 +3,7 @@
     "@babel/env",
     "@babel/flow"
   ],
-  "plugins": ["babel-plugin-add-module-exports"],
+  "plugins": [],
   "env": {
     "test": {
       "plugins": [

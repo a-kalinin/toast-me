@@ -1,3 +1,4 @@
 export default function(){
-  console.log('test module');
+  console.log('Modules import ok');
+  document.body.innerHTML += '<div>Modules import ok</div>'
 }
