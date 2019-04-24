@@ -7,12 +7,17 @@ import styles from './index.scss';
 import type { ToastOptionsType } from './types';
 
 const ToastOptions: { [string]: ToastOptionsType } = {
-  error: {
-    toastClass: styles.error,
+  default: {
+    position: 'top',
+    toastClass: '',
+    removedToastClass: '',
+    closeable: true,
+    // showAll: false,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
     showDuration: DEFAULT_SHOW_DURATION,
   },
-  notify: {
+  error: {
+    toastClass: styles.error,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
     showDuration: DEFAULT_SHOW_DURATION,
   },

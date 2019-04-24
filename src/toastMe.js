@@ -1,15 +1,11 @@
 // @flow
-import ToastOptions from './optionsLib';
-import {
-  setClass,
-  DEFAULT_TIMEOUT_BEFORE_REMOVE,
-  DEFAULT_SHOW_DURATION,
-} from './helper';
+import ToastOptions, { DEFAULT_TIMEOUT_BEFORE_REMOVE, DEFAULT_SHOW_DURATION } from './optionsLib';
+import { setClass } from './helper';
 import styles from './index.scss';
 
 import type { ToastActionType, ToastOptionsType } from './types';
 
-class ToastMeClass {
+export default class ToastMeClass {
   /**
    * @param content {String} - text to show
    * @param receivedOptions {Object} - options object
@@ -22,13 +18,16 @@ class ToastMeClass {
   ) {
     ToastMeClass.removeAll();
 
-    const options = typeof receivedOptions === 'string'
-      ? ToastOptions[receivedOptions]
-      : receivedOptions;
+    let options = {};
+    if (typeof receivedOptions === 'string' && ToastOptions[receivedOptions]) {
+      options = ToastOptions[receivedOptions];
+    } else if (typeof receivedOptions === 'object') {
+      options = receivedOptions
+    }
 
-    this.options = options || {};
+    this.options = { ...ToastOptions.default, ...options };
     this.content = content;
-    this.container = ToastMeClass.getContainer();
+    this.container = ToastMeClass.getContainer(this.options.position);
     this.domNode = this.createToastNode(action);
     this.container.appendChild(this.domNode);
     this.startTimer();
@@ -56,9 +55,14 @@ class ToastMeClass {
       setClass(node, this.options.toastClass);
     }
 
+    if (this.options && this.options.position === 'bottom') {
+      setClass(node, styles.toastBottom);
+    }
+
     if (action) {
       const actionNode = document.createElement('button');
       setClass(actionNode, styles.action);
+      setClass(actionNode, styles.button);
       if (action.class) {
         setClass(actionNode, action.class);
       }
@@ -73,7 +77,8 @@ class ToastMeClass {
 
     const closeNode = document.createElement('button');
     setClass(closeNode, styles.close);
-    if (this.options && this.options.closeable) {
+    setClass(closeNode, styles.button);
+    if (this.options && !this.options.closeable) {
       setClass(closeNode, styles.hidden);
     }
     closeNode.title = 'Close';
@@ -86,21 +91,24 @@ class ToastMeClass {
     return node;
   }
 
-  static getContainer(): Element {
-    // eslint-disable-next-line prefer-template
-    let node = document.querySelector('.' + styles.container);
+  static getContainer(position): Element {
+    let node = document.querySelector(`.${styles.container}`);
     if (!node) {
       node = document.createElement('div');
       node.classList.add(styles.container);
       document.body.appendChild(node);
+    }
+    if (position !== 'bottom' && node.classList.contains('bottom')) {
+      node.classList.remove(styles.bottom);
+    } else if (position === 'bottom' && !node.classList.contains('bottom')) {
+      node.classList.add(styles.bottom);
     }
     return node;
   }
 
   static removeAll() {
     const node = ToastMeClass.getContainer();
-    // eslint-disable-next-line prefer-template
-    const closeButtons = node.querySelectorAll('.' + styles.close);
+    const closeButtons = node.querySelectorAll(`.${styles.close}`);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
       closeButtons[i].click();
     }
@@ -133,11 +141,4 @@ class ToastMeClass {
   }
 }
 
-export default function (
-  content,
-  receivedOptions,
-  action,
-) {
-  return new ToastMeClass(content, receivedOptions, action);
-};
 export { ToastOptions };

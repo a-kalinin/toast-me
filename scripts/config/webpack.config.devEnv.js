@@ -85,7 +85,8 @@ const config = [
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Test Toast-Me',
-      })
+      }),
+      // new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
       modules: [

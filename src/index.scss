@@ -4,113 +4,137 @@
   width: 100%;
   color: #fff;
 
-  .toast{
-    height: 48px;
-    width: 40%;
-    min-width: 270px;
-    padding: 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: stretch;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 4px;
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    animation: toast-in 300ms ease-out forwards;
-
-    @keyframes toast-in{
-      from{
-        transform: translate(-50%, - 50%);
-        opacity: 0;
-      }
-      to{
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes toast-out{
-      from{
-        opacity: 1;
-      }
-      to{
-        opacity: 0;
-      }
-    }
-
-    .message{
-      flex: 1 1;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    button{
-      outline: none;
-      border: none;
-      border-radius: 4px;
-      background-color: transparent;
-      position: relative;
-      margin-left: 10px;
-      cursor: pointer;
-      color: #fff;
-      transition: background-color 200ms;
-
-      &:hover{
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &:active{
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-    }
-
-    .action{
-      flex-shrink: 0;
-      flex-grow: 0;
-      padding: 0 8px;
-      line-height: 24px;
-      color: #0B8AFF;
-    }
-
-    .close{
-      flex: 0 0 24px;
-      width: 24px;
-      height: 24px;
-
-      &:before,
-      &:after{
-        content: '';
-        display: block;
-        position: absolute;
-        width: 20px;
-        height: 2px;
-        top: calc(50% - 1px);
-        left: 50%;
-        background-color: #fff;
-      }
-
-      &:before{
-        transform: translateX(-50%) rotate(45deg);
-      }
-
-      &:after {
-        transform: translateX(-50%) rotate(135deg);
-      }
-
-      &.hidden{
-        display: none;
-      }
-    }
-
-    &.remove{
-      transform: translate(-50%, 0);
-      animation: toast-out 200ms forwards;
-    }
-
-    &.error{
-      background-color: #D40D00;
-    }
+  &.bottom{
+    top: auto;
+    bottom: 0;
   }
 }
+
+.toast {
+  height: 48px;
+  width: 40%;
+  min-width: 270px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  animation: toast-in-top 300ms ease-out forwards;
+
+  &.remove{
+    transform: translate(-50%, 0);
+    animation: toast-out 200ms forwards;
+  }
+
+  &.error{
+    background-color: #D40D00;
+  }
+}
+
+.toastBottom{
+  top: auto;
+  bottom: 30px;
+  animation: toast-in-bottom 300ms ease-out forwards;
+}
+
+@keyframes toast-in-top{
+  from{
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+  to{
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-in-bottom{
+  from{
+    transform: translate(-50%, 50%);
+    opacity: 0;
+  }
+  to{
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+
+.message{
+  flex: 1 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.button{
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 200ms;
+
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &:active{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.action{
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #0B8AFF;
+}
+
+.close{
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+
+  &:before,
+  &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    top: calc(50% - 1px);
+    left: 50%;
+    background-color: #fff;
+  }
+
+  &:before{
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  &:after {
+    transform: translateX(-50%) rotate(135deg);
+  }
+
+  &.hidden{
+    display: none;
+  }
+}
+

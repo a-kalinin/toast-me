@@ -11,21 +11,12 @@ const port = process.env.PORT || 3005;
 const configDevEnv = require('./config/webpack.config.devEnv');
 const configToastMe = require('./config/webpack.config.devLib');
 
-let compilerToastMe = webpack(configToastMe);
-
-compilerToastMe.run(function(err, stats) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  console.log();
-  console.log(chalk.blue('Compiler ToastMe run successfully'));
+let devIsRunning = false;
+const runDev = function() {
+  if (devIsRunning) return;
 
   const options = {
     contentBase: resolveApp('dev'),
-    // hot: true,
-    // watchContentBase: true,
     port: port,
     open: true,
     stats: 'errors-only',
@@ -39,7 +30,19 @@ compilerToastMe.run(function(err, stats) {
     console.log();
     console.log(chalk.green(`dev server listening on port ${port}`));
     console.log();
+    devIsRunning = true;
   });
+};
 
+const compilerToastMe = webpack(configToastMe);
+
+compilerToastMe.watch({}, function(err, stats) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log();
+  console.log(chalk.blue('Compiler ToastMe cycle run successfully'));
+  runDev();
 });
 
