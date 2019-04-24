@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack --env build --config scripts/config/webpack.config.prod.js",
     "run-dev": "node scripts/dev-server",
-    "watch": "webpack --progress --colors --watch --env dev",
-    "watch2": "webpack --colors --watch --env dev --config scripts/config/webpack.config.devLib.js",
+    "watch": "webpack --colors --watch --env dev --config scripts/config/webpack.config.devLib.js",
     "test": "node scripts/test.js --env=jsdom --config scripts/config/jest.config.js"
   },
   "repository": {
