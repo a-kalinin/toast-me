@@ -23,7 +23,7 @@ class ToastMeClass {
     ToastMeClass.removeAll();
 
     const options = typeof receivedOptions === 'string'
-      ? ToastOptions()[receivedOptions]
+      ? ToastOptions[receivedOptions]
       : receivedOptions;
 
     this.options = options || {};

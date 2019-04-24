@@ -3,33 +3,19 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-// const env = require('yargs').argv.env; // use --env with webpack 2
-// const pkg = require('../../package.json');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-// let libraryName = pkg.name;
-//
-// let outputFile, mode;
-//
-// if (env === 'build') {
-//   mode = 'production';
-//   outputFile = libraryName + '.min.js';
-// } else {
-//   mode = 'development';
-//   outputFile = libraryName + '.js';
-// }
-
 const config = [
   {
     bail: true,
     mode: 'development',
     entry: resolveApp('dev/script.js'),
-    // devtool: 'source-map',
-    devtool: 'eval',
+    devtool: 'source-map',
+    // devtool: 'eval',
     output: {
       path: resolveApp('dev'),
       // filename: outputFile,
@@ -96,19 +82,9 @@ const config = [
         },
       ]
     },
-    devServer: {
-      port: process.env.PORT || 3005,
-      contentBase: resolveApp('dev'),
-      // hot: true,
-      // open: true,
-      // watchContentBase: true,
-      // stats: 'errors-only',
-    },
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Test Toast-Me',
-        // template: resolveApp('dev/_index.html'),
-        // filename: resolveApp('dev/index.html'),
       })
     ],
     resolve: {
