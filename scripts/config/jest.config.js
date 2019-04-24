@@ -18,6 +18,7 @@ module.exports = {
   testMatch: [
     // resolveApp('src/*/__tests__/**/*.js'),
     resolveApp('src/__tests__/**/*.js'),
+    resolveApp('src/__tests__/*.js'),
     // '<rootDir>/../../src/**/__tests__/**/*.js}',
     '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}}',
     '<rootDir>/../../src/**/?(*.)(spec|test).{js,jsx,mjs}',
