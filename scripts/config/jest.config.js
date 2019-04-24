@@ -1,10 +1,11 @@
 const path = require('path');
 const fs = require('fs');
+const chalk = require('chalk');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-console.log(resolveApp('**/__tests__/**/*.{js,jsx,mjs}'));
+console.log(chalk.green('Reading config'));
 
 module.exports = {
   verbose: true,
@@ -15,15 +16,16 @@ module.exports = {
     '<rootDir>/polyfills.js',
     '<rootDir>/jestSetup.js',
   ],
-  testMatch: [
-    // resolveApp('src/*/__tests__/**/*.js'),
-    resolveApp('src/__tests__/**/*.js'),
-    resolveApp('src/__tests__/*.js'),
-    // '<rootDir>/../../src/**/__tests__/**/*.js}',
-    '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}}',
-    '<rootDir>/../../src/**/?(*.)(spec|test).{js,jsx,mjs}',
-    '<rootDir>/../../dev/**/?(*.)(spec|test).{js,jsx,mjs}',
-  ], testEnvironment: 'node',
+  // testMatch: [
+  //   // resolveApp('src/*/__tests__/**/*.js'),
+  //   // resolveApp('src/__tests__/**/*.js'),
+  //   // resolveApp('src/__tests__/*.js'),
+  //   // '<rootDir>/../../src/**/__tests__/**/*.js}',
+  //   // '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}}',
+  //   // '<rootDir>/../../src/**/?(*.)(spec|test).{js,jsx,mjs}',
+  //   // '<rootDir>/../../dev/**/?(*.)(spec|test).{js,jsx,mjs}',
+  // ],
+  testEnvironment: 'node',
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js|jsx|mjs)$': '<rootDir>/../../node_modules/babel-jest',

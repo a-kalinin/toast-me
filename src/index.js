@@ -4,8 +4,11 @@ import ToastOptions from './optionsLib';
 
 import type { ToastActionType, ToastOptionsType } from './types';
 
+const test = 'my test';
+
 export {
   ToastOptions,
+  test,
 };
 
 export default function (
