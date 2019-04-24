@@ -1,3 +1,11 @@
+const path = require('path');
+const fs = require('fs');
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
+console.log(resolveApp('**/__tests__/**/*.{js,jsx,mjs}'));
+
 module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx,mjs}',
@@ -7,8 +15,9 @@ module.exports = {
     '<rootDir>/jestSetup.js',
   ],
   testMatch: [
-    '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}',
-    '<rootDir>/../../src/**/*.(spec|test).{js,jsx,mjs}',
+    resolveApp('src/**/__tests__/**/*.{js,jsx,mjs}'),
+    // '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}',
+    // '<rootDir>/../../src/**/?(*.)(spec|test).{js,jsx,mjs}',
   ],
   testEnvironment: 'node',
   testURL: 'http://localhost',
