@@ -15,7 +15,7 @@ module.exports = {
     '<rootDir>/jestSetup.js',
   ],
   testMatch: [
-    resolveApp('**/__tests__/**/*.{js,jsx,mjs}'),
+    resolveApp('**/__tests__/**/*.(js|jsx|mjs)'),
     // '<rootDir>/../../src/**/__tests__/**/*.{js,jsx,mjs}',
     // '<rootDir>/../../src/**/?(*.)(spec|test).{js,jsx,mjs}',
   ],
