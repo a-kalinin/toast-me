@@ -1,45 +1,95 @@
-# ToastMe
-
-Tool to show toasts
-
-WORK IN PROCESS
-
+# toast-me
+[![npm version](https://badge.fury.io/js/toast-me.svg)](https://badge.fury.io/js/toast-me)
 [![Build Status](https://travis-ci.org/a-kalinin/toast-me.svg?branch=master)](https://travis-ci.org/a-kalinin/toast-me)
+
+Tiny, easy to use tool to show toast-like notifications on the web page.
+
+![Demo](https://alexkalinin.ru/works/toast-me/toast-demo.gif)
 
 ## Features
 
-* ES6 as a source.
-* Exports in a [umd](https://github.com/umdjs/umd) format so your library works everywhere.
-** Linting with [ESLint](http://eslint.org/).
+* Exported in a [umd](https://github.com/umdjs/umd) format so works everywhere.
+* Customizable
+* Light-weight (15kB until gzip, 5kB zipped)
+* Supports actions
 
-## Process
+## How to use
+#### Import
+Install package from npm
+```
+yarn add toast-me
+# or
+npm install toast-me
+```
 
-*Have in mind that you have to build your library before publishing.
- The files under the `lib` folder are the ones that should be distributed.*
+#### Add module to your script
+```javascript
+import toast from 'toast-me';
+```
+
+#### Use it
+```javascript
+toast('My message');
+```
+
+#### Use it with own customization
+```javascript
+toast('My message', { duration: 3000, toastClass: 'my-toast-class' /* ... */ });
+```
+
+## Toast function arguments
+
+Function accepts three arguments:
+* `message` - message to show in toast,
+* `options` - toast customization options,
+* `action` - some action button options.
+
+#### Message argument
+
+Accepts string, any message to put in toast.
+Text shown in one line, no wraps allowed.
+Overflowed text will be hidden with ellipsis.
+
+#### Options argument
+
+Accepts object with any allowed fields, or string as a name of options preset.
+
+##### Accepted options
+* `position` - *string*, one of `"top"` `"bottom"`. Default `"top"`.
+* `toastClass` - *string*, CSS class name for toast node, can be used for custom toast styling.
+Default `""` - empty string
+* `closeable` - *boolean*, enables/hides "close" button on toast. Default `true`
+* `timeoutOnRemove` - *number*, time in ms, till node should be removed from DOM after toast hides.
+Can be useful when you change hide animation by CSS and set new animation duration.
+To avoid element disappearing until animation ends set this option to larger or equal
+value than animation duration. Default `1000`
+* `duration` - *number*, time in ms, how long should toast be shown. Default `5000`
+
+##### Options presets
+
+* `default` - all default options,
+* `error` - everything default, except background color - `#D40D00`
+
+
+
+#Contributing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SECTION IN WORK
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 ## Getting started
 
-1. Setting up the name of your library
-  * Open `webpack.config.js` file and change the value of `libraryName` variable.
-  * Open `package.json` file and change the value of `main` property so it matches the name of your library.
-2. Build your library
-  * Run `yarn install` (recommended) or `npm install` to get the project's dependencies
-  * Run `yarn build` or `npm run build` to produce minified version of your library.
-3. Development mode
-  * Having all the dependencies installed run `yarn dev` or `npm run dev`. This command will generate an non-minified version of your library and will run a watcher so you get the compilation on file change.
-4. Running the tests
-  * Run `yarn test` or `npm run test`
 
 ## Scripts
 
 * `yarn build` or `npm run build` - produces production version of your library under the `lib` folder
 * `yarn dev` or `npm run dev` - produces development version of your library and runs a watcher
 * `yarn test` or `npm run test` - well ... it runs the tests :)
-* `yarn test:watch` or `npm run test:watch` - same as above but in a watch mode
 
 ## Readings
-
-* [Start your own JavaScript library using webpack and ES6](http://krasimirtsonev.com/blog/article/javascript-library-starter-using-webpack-es6)
 
 ## Misc
 
