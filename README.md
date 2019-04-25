@@ -38,7 +38,9 @@ toast('My message', { duration: 3000, toastClass: 'my-toast-class' /* ... */ });
 ```
 
 ## Toast function arguments
-
+```javascript
+toast(message, [options, [action]]);
+```
 Function accepts three arguments:
 * `message` - message to show in toast,
 * `options` - toast customization options,
@@ -49,10 +51,12 @@ Function accepts three arguments:
 Accepts string, any message to put in toast.
 Text shown in one line, no wraps allowed.
 Overflowed text will be hidden with ellipsis.
+Complete text shown on hover with the `title` attribute on toast node.
 
 #### Options argument
 
-Accepts object with any allowed fields, or string as a name of options preset.
+Accepts object with any allowed fields, or string as a name of options preset, or `null`.
+If you don't need to set options, but need to pass an action - pass `null` instead options.
 
 ##### Accepted options
 * `position` - *string*, one of `"top"` `"bottom"`. Default `"top"`.
@@ -70,6 +74,12 @@ value than animation duration. Default `1000`
 * `default` - all default options,
 * `error` - everything default, except background color - `#D40D00`
 
+#### Action argument
+
+Accepts object with three fields:
+* `label` - *string*, text to put in button.
+* `action` - callback *function* - to be called on button click.
+* `class` - *string*, CSS class for button node.
 
 
 #Contributing
