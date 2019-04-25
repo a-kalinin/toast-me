@@ -11,7 +11,7 @@ export type ToastOptionsType = {
 };
 
 export type ToastActionType = {
-  name: string,
+  label: string,
   action: () => void,
   class?: string,
 };

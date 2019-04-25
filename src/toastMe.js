@@ -66,12 +66,12 @@ export default class ToastMeClass {
       if (action.class) {
         setClass(actionNode, action.class);
       }
-      actionNode.textContent = action.name;
+      actionNode.textContent = action.label;
       actionNode.addEventListener('click', () => {
         action.action();
         this.close();
       });
-      actionNode.title = action.name;
+      actionNode.title = action.label;
       node.appendChild(actionNode);
     }
 
