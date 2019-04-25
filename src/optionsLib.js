@@ -14,12 +14,12 @@ const ToastOptions: { [string]: ToastOptionsType } = {
     closeable: true,
     // showAll: false,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
-    showDuration: DEFAULT_SHOW_DURATION,
+    duration: DEFAULT_SHOW_DURATION,
   },
   error: {
     toastClass: styles.error,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
-    showDuration: DEFAULT_SHOW_DURATION,
+    duration: DEFAULT_SHOW_DURATION,
   },
 };
 

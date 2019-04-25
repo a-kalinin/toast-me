@@ -27,7 +27,7 @@ createNode('button')
       {
         toastClass: styles.customToast,
         position: 'bottom',
-        showDuration: 6000,
+        duration: 6000,
       },
       {
         name: 'Confirm',

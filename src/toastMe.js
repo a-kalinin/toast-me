@@ -132,7 +132,7 @@ export default class ToastMeClass {
   startTimer() {
     this.timerShow = setTimeout(
       () => this.close(),
-      this.options.showDuration || DEFAULT_SHOW_DURATION,
+      this.options.duration || DEFAULT_SHOW_DURATION,
     );
   }
 

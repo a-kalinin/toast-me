@@ -7,7 +7,7 @@ export type ToastOptionsType = {
   closeable?: boolean,
   showAll?: boolean,
   timeoutOnRemove?: number,
-  showDuration?: number,
+  duration?: number,
 };
 
 export type ToastActionType = {
