@@ -10,7 +10,7 @@ createNode('h1')
 
 createNode('button')
   .html('Do not press me')
-  .on('click', () => toast('Why you pressing me? :"(', 'error'))
+  .on('click', () => toast('Why you pressing meWhy you pressing meWhy you pressing meWhy you pressing meWhy you pressing meWhy you pressing me? :"(', 'error'))
   .putInto(createNode('p').putIntoDoc().node);
 
 createNode('button')
@@ -27,7 +27,7 @@ createNode('button')
       {
         toastClass: styles.customToast,
         position: 'bottom',
-        duration: 6000,
+        showDuration: 6000,
       },
       {
         name: 'Confirm',
