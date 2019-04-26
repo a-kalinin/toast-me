@@ -19,19 +19,13 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
     * [Accepted options](#accepted-options)
     * [Options presets](#options-presets)
   * [Action argument](#action-argument)
-
+* [Instance of ToastMeClass](#instance-of-toastmeclass)
+* [class ToastMeClass](#class-toastmeclass)
 * [Contributing](#contributing)
   * [Getting started](#getting-started)
   * [Scripts](#scripts)
   * [Structure](#structure)
-    * [Files structure](#files-structure)
-    * [Path alias](#path-alias)
-    * [Git repository architecture](#git-repository-architecture)
-    * [Redux state](#redux-state)
-  * [Dependencies](#dependencies)
-  * [API](#api)
-  * [Guidelines](#guidelines)
-  * [Useful links](#useful-links)
+  * [Readings](#readings)
 
 ## Features
 
@@ -39,6 +33,7 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 * Customizable
 * Light-weight (15kB until gzip, 5kB zipped)
 * Supports actions
+* Pauses toast on hover
 
 ## How to use
 #### Install
@@ -64,6 +59,31 @@ toast('My message');
 toast('My message', { duration: 3000, toastClass: 'my-toast-class' /* ... */ });
 ```
 
+#### Using with own customization and action button
+```javascript
+toast(
+  'My message',
+  { duration: 1000 },
+  {
+    label: 'Confirm',
+    action: () => alert('Cool!'),
+    class: 'my-custom-class', // optional
+  },
+);
+```
+
+#### Using with action button but no customizations
+```javascript
+toast(
+  'My message',
+  null,
+  {
+    label: 'Confirm',
+    action: () => alert('Cool!'),
+  },
+);
+```
+
 ## Toast function arguments
 ```javascript
 toast(message, [options, [action]]);
@@ -72,6 +92,8 @@ Function accepts three arguments:
 * `message` - message to show in toast,
 * `options` - toast customization options,
 * `action` - some action button options.
+
+Returns instance of ToastMeClass. You can learn method of it [here]()
 
 #### Message argument
 
@@ -86,6 +108,17 @@ Complete text shown on hover with the `title` attribute on toast node.
 If you don't need to set options, but need to pass an action - pass `null` instead options.
 
 ##### Accepted options
+Default options preset (all available options with their default values):
+```javascript
+{
+  position: 'top',
+  toastClass: '',
+  removedToastClass: '',
+  closeable: true,
+  timeoutOnRemove: 1000,
+  duration: 5000,
+}
+```
 * `position` - *string*, one of `"top"` `"bottom"`. Default `"top"`.
 * `toastClass` - *string*, CSS class name for toast node, can be used for custom toast styling.
 Default `""` - empty string
@@ -108,14 +141,34 @@ value than animation duration. Default `1000`
 * `action` - callback *function* - to be called on button click.
 * `class` - *string*, CSS class for button node.
 
+## Instance of ToastMeClass
+Has methods:
+* `close()` - Closes current toast.
+* `startTimer()` - Starts/restarts timer with timeout, set in options object on toast create.
+* `stopTimer()` - Stops timer, the toast won't disappear. After calling this
+                  you should handle toast's behavior by yourself
+                  (i.e. with `close()` method).
+```javascript
+import toast from 'toast-me';
+
+const message = toast('Something');
+// ...
+message.stopTimer();
+// ...
+message.close();
+```
+
+## class ToastMeClass
+Has static methods:
+* `removeAll(position)` - Closes all toasts in that position. Accepts one argument
+                          `position`, default `"top"` (described in [options section](#accepted-options))
+```javascript
+import { ToastMeClass } from 'toast-me';
+
+ToastMeClass.removeAll('bottom');
+```
 
 #Contributing
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-SECTION BELOW IS IN WORK
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ## Getting started
 You will need [node.js](https://nodejs.org/en/) and preferred to have
