@@ -16,28 +16,27 @@ export default class ToastMeClass {
     receivedOptions?: null | ToastOptionsType | 'error' | 'notify' = 'notify',
     action?: ToastActionType,
   ) {
-    ToastMeClass.removeAll();
-
-    let options = {};
+    let options = { ...ToastOptions.default };
     if (typeof receivedOptions === 'string' && ToastOptions[receivedOptions]) {
-      options = ToastOptions[receivedOptions];
+      options = { ...options, ...ToastOptions[receivedOptions] };
     } else if (typeof receivedOptions === 'object') {
-      options = receivedOptions
+      options = { ...options, ...receivedOptions };
     }
 
-    this.options = { ...ToastOptions.default, ...options };
+    ToastMeClass.removeAll(options.position);
+
+    this.options = options;
     this.content = content;
-    this.container = ToastMeClass.getContainer(this.options.position);
+    ToastMeClass
+      .getContainer(options.position)
+      .appendChild(this.domNode);
     this.domNode = this.createToastNode(action);
-    this.container.appendChild(this.domNode);
     this.startTimer();
   }
 
   options: ToastOptionsType;
 
   content: string;
-
-  container: Element;
 
   domNode: Element;
 
@@ -92,22 +91,20 @@ export default class ToastMeClass {
   }
 
   static getContainer(position): Element {
-    let node = document.querySelector(`.${styles.container}`);
+    const onBottom = position === 'bottom';
+    const selector = `.${styles.container} ${onBottom ? `.${styles.bottom}` : ''}`;
+    let node = document.querySelector(selector);
     if (!node) {
       node = document.createElement('div');
       node.classList.add(styles.container);
+      if (onBottom) node.classList.add(styles.bottom);
       document.body.appendChild(node);
-    }
-    if (position !== 'bottom' && node.classList.contains('bottom')) {
-      node.classList.remove(styles.bottom);
-    } else if (position === 'bottom' && !node.classList.contains('bottom')) {
-      node.classList.add(styles.bottom);
     }
     return node;
   }
 
-  static removeAll() {
-    const node = ToastMeClass.getContainer();
+  static removeAll(position) {
+    const node = ToastMeClass.getContainer(position);
     const closeButtons = node.querySelectorAll(`.${styles.close}`);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
       closeButtons[i].click();
@@ -130,6 +127,7 @@ export default class ToastMeClass {
   }
 
   startTimer() {
+    this.stopTimer();
     this.timerShow = setTimeout(
       () => this.close(),
       this.options.duration || DEFAULT_SHOW_DURATION,
