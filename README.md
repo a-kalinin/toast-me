@@ -209,4 +209,4 @@ When you load all dependencies, you able to run several commands:
 1. [Node.js](https://nodejs.org/en/)
 1. [Yarn](https://yarnpkg.com/lang/en/)
 1. [SASS](http://sass-lang.com/)
-1. [Jest - main documentation](https://jestjs.io/docs/en/getting-started)
+1. [Jest](https://jestjs.io/docs/en/getting-started)
