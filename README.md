@@ -168,7 +168,7 @@ import { ToastMeClass } from 'toast-me';
 ToastMeClass.removeAll('bottom');
 ```
 
-#Contributing
+## Contributing
 
 ## Getting started
 You will need [node.js](https://nodejs.org/en/) and preferred to have
