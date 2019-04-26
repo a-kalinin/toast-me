@@ -13,13 +13,13 @@ const config = [
   {
     bail: true,
     mode: 'development',
-    entry: resolveApp('dev/script.js'),
+    entry: resolveApp('dev/index.js'),
     devtool: 'source-map',
     // devtool: 'eval',
     output: {
       path: resolveApp('dev'),
       // filename: outputFile,
-      filename: "script.js",
+      filename: "index.js",
       library: 'dev-env',
       libraryTarget: 'umd',
       umdNamedDefine: true,
