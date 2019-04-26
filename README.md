@@ -48,14 +48,14 @@ Function accepts three arguments:
 
 #### Message argument
 
-Accepts string, any message to put in toast.
+Accepts `string`, any message to put in toast.
 Text shown in one line, no wraps allowed.
 Overflowed text will be hidden with ellipsis.
 Complete text shown on hover with the `title` attribute on toast node.
 
 #### Options argument
 
-Accepts object with any allowed fields, or string as a name of options preset, or `null`.
+**Optional** - Accepts `object` with any allowed fields, or `string` as a name of options preset, or `null`.
 If you don't need to set options, but need to pass an action - pass `null` instead options.
 
 ##### Accepted options
@@ -76,7 +76,7 @@ value than animation duration. Default `1000`
 
 #### Action argument
 
-Accepts object with three fields:
+**Optional** - Accepts object with three fields:
 * `label` - *string*, text to put in button.
 * `action` - callback *function* - to be called on button click.
 * `class` - *string*, CSS class for button node.
@@ -86,9 +86,9 @@ Accepts object with three fields:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-SECTION IN WORK
+SECTION BELOW IS IN WORK
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ## Getting started
 
@@ -96,7 +96,7 @@ SECTION IN WORK
 ## Scripts
 
 * `yarn build` or `npm run build` - produces production version of your library under the `lib` folder
-* `yarn dev` or `npm run dev` - produces development version of your library and runs a watcher
+* `yarn run-dev` or `npm run run-dev` - produces development version of your library, runs a watcher and http server on http://localhost:3005
 * `yarn test` or `npm run test` - well ... it runs the tests :)
 
 ## Readings
