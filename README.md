@@ -95,19 +95,19 @@ Function accepts three arguments:
 
 Returns instance of ToastMeClass. You can learn method of it [here]()
 
-#### Message argument
+### Message argument
 
 Accepts `string`, any message to put in toast.
 Text shown in one line, no wraps allowed.
 Overflowed text will be hidden with ellipsis.
 Complete text shown on hover with the `title` attribute on toast node.
 
-#### Options argument
+### Options argument
 
 **Optional** - Accepts `object` with any allowed fields, or `string` as a name of options preset, or `null`.
 If you don't need to set options, but need to pass an action - pass `null` instead options.
 
-##### Accepted options
+#### Accepted options
 Default options preset (all available options with their default values):
 ```javascript
 {
@@ -129,12 +129,12 @@ To avoid element disappearing until animation ends set this option to larger or 
 value than animation duration. Default `1000`
 * `duration` - *number*, time in ms, how long should toast be shown. Default `5000`
 
-##### Options presets
+#### Options presets
 
 * `default` - all default options,
 * `error` - everything default, except background color - `#D40D00`
 
-#### Action argument
+### Action argument
 
 **Optional** - Accepts object with three fields:
 * `label` - *string*, text to put in button.
