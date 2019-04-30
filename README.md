@@ -11,8 +11,11 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 * [How to use](#how-to-use)
   * [Install](#install)
   * [Import module to your script](#import-module-to-your-script)
-  * [Using](#using)
-  * [Using with own customization](#using-with-own-customization)
+  * [Use](#use)
+  * [Use with own customization](#use-with-own-customization)
+  * [Use with options preset](#use-with-options-preset)
+  * [Use with own customization and action button](#use-with-own-customization-and-action-button)
+  * [Use with action button but no customizations](#use-with-action-button-but-no-customizations)
 * [Toast function arguments](#toast-function-arguments)
   * [Message argument](#message-argument)
   * [Options argument](#options-argument)
@@ -32,8 +35,10 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 * Exported in a [umd](https://github.com/umdjs/umd) format so works everywhere.
 * Customizable
 * Light-weight (15kB until gzip, 5kB zipped)
-* Supports actions
-* Pauses toast on hover
+* Supports actions' button inside toast
+* Closeable
+* Pauses toast's timer on hover
+* Accepts CSS classes for styling
 
 ## How to use
 ##### Install package from npm
@@ -48,17 +53,22 @@ npm install toast-me
 import toast from 'toast-me';
 ```
 
-##### Using
+##### Use
 ```javascript
 toast('My message');
 ```
 
-##### Using with own customization
+##### Use with own customization
 ```javascript
 toast('My message', { duration: 3000, toastClass: 'my-toast-class' /* ... */ });
 ```
 
-##### Using with own customization and action button
+##### Use with options preset
+```javascript
+toast('My message', 'error');
+```
+
+##### Use with own customization and action button
 ```javascript
 toast(
   'My message',
@@ -71,7 +81,7 @@ toast(
 );
 ```
 
-##### Using with action button but no customizations
+##### Use with action button but no customizations
 ```javascript
 toast(
   'My message',
