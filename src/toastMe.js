@@ -6,6 +6,27 @@ import styles from './index.scss';
 import type { ToastActionType, ToastOptionsType } from './types';
 
 export default class ToastMeClass {
+  static getContainer(position): Element {
+    const onBottom = position === 'bottom';
+    const selector = `.${styles.container} ${onBottom ? `.${styles.bottom}` : ''}`;
+    let node = document.querySelector(selector);
+    if (!node) {
+      node = document.createElement('div');
+      node.classList.add(styles.container);
+      if (onBottom) node.classList.add(styles.bottom);
+      document.body.appendChild(node);
+    }
+    return node;
+  }
+
+  static removeAll(position) {
+    const node = ToastMeClass.getContainer(position);
+    const closeButtons = node.querySelectorAll(`.${styles.close}`);
+    for (let i = 0, l = closeButtons.length; i < l; i += 1) {
+      closeButtons[i].click();
+    }
+  }
+
   /**
    * @param content {String} - text to show
    * @param receivedOptions {Object} - options object
@@ -27,10 +48,10 @@ export default class ToastMeClass {
 
     this.options = options;
     this.content = content;
+    this.domNode = this.createToastNode(action);
     ToastMeClass
       .getContainer(options.position)
       .appendChild(this.domNode);
-    this.domNode = this.createToastNode(action);
     this.startTimer();
   }
 
@@ -88,27 +109,6 @@ export default class ToastMeClass {
     node.addEventListener('mouseleave', () => this.startTimer());
 
     return node;
-  }
-
-  static getContainer(position): Element {
-    const onBottom = position === 'bottom';
-    const selector = `.${styles.container} ${onBottom ? `.${styles.bottom}` : ''}`;
-    let node = document.querySelector(selector);
-    if (!node) {
-      node = document.createElement('div');
-      node.classList.add(styles.container);
-      if (onBottom) node.classList.add(styles.bottom);
-      document.body.appendChild(node);
-    }
-    return node;
-  }
-
-  static removeAll(position) {
-    const node = ToastMeClass.getContainer(position);
-    const closeButtons = node.querySelectorAll(`.${styles.close}`);
-    for (let i = 0, l = closeButtons.length; i < l; i += 1) {
-      closeButtons[i].click();
-    }
   }
 
   close() {
