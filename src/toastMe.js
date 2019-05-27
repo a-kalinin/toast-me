@@ -48,7 +48,7 @@ export default class ToastMeClass {
 
     this.options = options;
     this.content = content;
-    this.domNode = this.createToastNode(action);
+    this.domNode = this.createToastNode.call(this, action);
     ToastMeClass
       .getContainer(options.position)
       .appendChild(this.domNode);

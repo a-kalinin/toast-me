@@ -10,7 +10,7 @@ createNode('h1')
 
 createNode('button')
   .html('Do not press me')
-  .on('click', () => toast('Why you pressing meWhy you pressing meWhy you pressing meWhy you pressing meWhy you pressing meWhy you pressing me? :"(', 'error'))
+  .on('click', () => toast('Why you pressing me? :"(', 'error'))
   .putInto(createNode('p').putIntoDoc().node);
 
 createNode('button')
