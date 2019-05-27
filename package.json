@@ -1,6 +1,6 @@
 {
   "name": "toast-me",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Creates toast messages",
   "main": "lib/toast-me.min.js",
   "scripts": {
