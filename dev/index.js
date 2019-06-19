@@ -5,7 +5,7 @@ import toast, { ToastOptions } from 'toast-me.js';
 import styles from './style.scss';
 
 createNode('h1')
-  .html('Toast Me test running')
+  .html('ToastMe')
   .putIntoDoc();
 
 createNode('button')
@@ -30,12 +30,11 @@ createNode('button')
         showDuration: 6000,
       },
       {
-        name: 'Confirm',
+        label: 'Confirm',
         action: () => alert('You are so kind!'),
         class: styles.customButton,
       },
     ),
   )
   .putInto(createNode('p').putIntoDoc().node);
-
 

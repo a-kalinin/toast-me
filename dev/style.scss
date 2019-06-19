@@ -2,6 +2,23 @@ html{
   font-family: Calibri, sans-serif;
 }
 
+p > button {
+  background-color: #0B8AFF;
+  border: 1px solid #1B6AFF;
+  color: white;
+  border-radius: 3px;
+  padding: 7px 10px;
+  outline: none;
+  cursor: pointer;
+
+  &:active{
+    opacity: 0.95;
+  }
+  &:hover{
+    opacity: 0.9;
+  }
+}
+
 .customToast{
   background-color: #0B8AFF;
   border-radius: 2px;
