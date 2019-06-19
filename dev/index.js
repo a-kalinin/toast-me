@@ -15,11 +15,11 @@ createNode('button')
 
 createNode('button')
   .html('Press me instead!')
-  .on('click', () => toast('Yes, you did it!'))
+  .on('click', () => toast('Yes, you did it!', { duration: 2500 }))
   .putInto(createNode('p').putIntoDoc().node);
 
 createNode('button')
-  .html('I am custom, try me!')
+  .html('I am customized, try me!')
   .on(
     'click',
     () => toast(
@@ -27,7 +27,7 @@ createNode('button')
       {
         toastClass: styles.customToast,
         position: 'bottom',
-        showDuration: 6000,
+        showDuration: 3000,
       },
       {
         label: 'Confirm',
@@ -35,6 +35,30 @@ createNode('button')
         class: styles.customButton,
       },
     ),
+  )
+  .putInto(createNode('p').putIntoDoc().node);
+
+createNode('button')
+  .html('Maybe several messages at once?')
+  .on(
+    'click',
+    () => {
+      toast('One', { duration: 2500 });
+      setTimeout(() => toast('Two', { duration: 2500 }), 400);
+      setTimeout(() => toast('Three', { duration: 2500 }), 800);
+    },
+  )
+  .putInto(createNode('p').putIntoDoc().node);
+
+createNode('button')
+  .html('Or you would like them in line?')
+  .on(
+    'click',
+    () => {
+      toast('One', { type: 'chain', duration: 2500 });
+      setTimeout(() => toast('Two', { type: 'chain', duration: 2500 }), 400);
+      setTimeout(() => toast('Three', { type: 'chain', duration: 2500 }), 800);
+    },
   )
   .putInto(createNode('p').putIntoDoc().node);
 

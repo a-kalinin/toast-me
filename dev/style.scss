@@ -1,18 +1,21 @@
 html{
-  font-family: Calibri, sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
 }
 
 p > button {
   background-color: #0B8AFF;
-  border: 1px solid #1B6AFF;
+  border: 1px solid #0B7AFF;
   color: white;
   border-radius: 3px;
   padding: 7px 10px;
   outline: none;
   cursor: pointer;
+  font-size: 14px;
 
   &:active{
     opacity: 0.95;
+    color: #FFFFFFAA;
   }
   &:hover{
     opacity: 0.9;

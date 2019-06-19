@@ -3,24 +3,24 @@ import ToastOptions, { DEFAULT_TIMEOUT_BEFORE_REMOVE, DEFAULT_SHOW_DURATION } fr
 import { setClass } from './helper';
 import styles from './index.scss';
 
-import type { ToastActionType, ToastOptionsType } from './types';
+import type { ToastActionType, ToastOptionsType, ContainerOptionsType } from './types';
 
 export default class ToastMeClass {
-  static getContainer(position): Element {
-    const onBottom = position === 'bottom';
-    const selector = `.${styles.container} ${onBottom ? `.${styles.bottom}` : ''}`;
+  static getContainer({ position = 'top', type = 'over' }: ContainerOptionsType): Element {
+    const positionClass = position === 'bottom' ? styles.bottom : styles.top;
+    const typeClass = type === 'chain' ? styles.chain : styles.over;
+    const selector = `.${styles.container}.${positionClass}.${typeClass}`;
     let node = document.querySelector(selector);
     if (!node) {
       node = document.createElement('div');
-      node.classList.add(styles.container);
-      if (onBottom) node.classList.add(styles.bottom);
+      setClass(node, [styles.container, positionClass, typeClass]);
       document.body.appendChild(node);
     }
     return node;
   }
 
-  static removeAll(position) {
-    const node = ToastMeClass.getContainer(position);
+  static removeAll(options: ContainerOptionsType) {
+    const node = ToastMeClass.getContainer(options);
     const closeButtons = node.querySelectorAll(`.${styles.close}`);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
       closeButtons[i].click();
@@ -44,13 +44,13 @@ export default class ToastMeClass {
       options = { ...options, ...receivedOptions };
     }
 
-    ToastMeClass.removeAll(options.position);
+    if (options.type === 'over') ToastMeClass.removeAll(options);
 
     this.options = options;
     this.content = content;
     this.domNode = this.createToastNode(action);
     ToastMeClass
-      .getContainer(options.position)
+      .getContainer(options)
       .appendChild(this.domNode);
     this.startTimer();
   }
@@ -61,7 +61,7 @@ export default class ToastMeClass {
 
   domNode: Element;
 
-  createToastNode(action?: ToastActionType) {
+  createToastNode(action?: ToastActionType): Element {
     const node = document.createElement('div');
     setClass(node, styles.toast);
 
@@ -71,36 +71,26 @@ export default class ToastMeClass {
     node.appendChild(messageNode);
     node.title = this.content;
 
-    if (this.options && this.options.toastClass) {
-      setClass(node, this.options.toastClass);
-    }
-
-    if (this.options && this.options.position === 'bottom') {
-      setClass(node, styles.toastBottom);
-    }
+    setClass(node, [this.options.toastClass]);
 
     if (action) {
       const actionNode = document.createElement('button');
-      setClass(actionNode, styles.action);
-      setClass(actionNode, styles.button);
-      if (action.class) {
-        setClass(actionNode, action.class);
-      }
+      setClass(actionNode, [styles.action, styles.button, action.class]);
+      actionNode.title = action.label;
       actionNode.textContent = action.label;
       actionNode.addEventListener('click', () => {
         action.action();
         this.close();
       });
-      actionNode.title = action.label;
       node.appendChild(actionNode);
     }
 
     const closeNode = document.createElement('button');
-    setClass(closeNode, styles.close);
-    setClass(closeNode, styles.button);
-    if (this.options && !this.options.closeable) {
-      setClass(closeNode, styles.hidden);
-    }
+    setClass(closeNode, [
+      styles.close,
+      styles.button,
+      !this.options.closeable && styles.hidden,
+    ]);
     closeNode.title = 'Close';
     closeNode.addEventListener('click', () => this.close());
     node.appendChild(closeNode);
@@ -115,10 +105,7 @@ export default class ToastMeClass {
     this.stopTimer();
     if (!this.domNode) return;
 
-    setClass(this.domNode, styles.remove);
-    if (this.options.removedToastClass) {
-      setClass(this.domNode, this.options.removedToastClass);
-    }
+    setClass(this.domNode, [styles.remove, this.options.removedToastClass]);
 
     setTimeout(
       () => { this.domNode.remove(); },

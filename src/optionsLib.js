@@ -9,10 +9,10 @@ import type { ToastOptionsType } from './types';
 const ToastOptions: { [string]: ToastOptionsType } = {
   default: {
     position: 'top',
+    type: 'over',
     toastClass: '',
     removedToastClass: '',
     closeable: true,
-    // showAll: false,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
     duration: DEFAULT_SHOW_DURATION,
   },
