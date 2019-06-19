@@ -3,23 +3,24 @@ import ToastOptions, { DEFAULT_TIMEOUT_BEFORE_REMOVE, DEFAULT_SHOW_DURATION } fr
 import { setClass } from './helper';
 import styles from './index.scss';
 
-import type { ToastActionType, ToastOptionsType } from './types';
+import type { ToastActionType, ToastOptionsType, ContainerOptionsType } from './types';
 
 export default class ToastMeClass {
-  static getContainer(position): Element {
-    const onBottom = position === 'bottom';
-    const selector = `.${styles.container}.${onBottom ? styles.bottom : styles.top}`;
+  static getContainer({ position = 'top', type = 'over' }: ContainerOptionsType): Element {
+    const positionClass = position === 'bottom' ? styles.bottom : styles.top;
+    const typeClass = type === 'chain' ? styles.chain : styles.over;
+    const selector = `.${styles.container}.${positionClass}.${typeClass}`;
     let node = document.querySelector(selector);
     if (!node) {
       node = document.createElement('div');
-      setClass(node, [styles.container, onBottom ? styles.bottom : styles.top]);
+      setClass(node, [styles.container, positionClass, typeClass]);
       document.body.appendChild(node);
     }
     return node;
   }
 
-  static removeAll(position) {
-    const node = ToastMeClass.getContainer(position);
+  static removeAll(options: ContainerOptionsType) {
+    const node = ToastMeClass.getContainer(options);
     const closeButtons = node.querySelectorAll(`.${styles.close}`);
     for (let i = 0, l = closeButtons.length; i < l; i += 1) {
       closeButtons[i].click();
@@ -43,13 +44,13 @@ export default class ToastMeClass {
       options = { ...options, ...receivedOptions };
     }
 
-    ToastMeClass.removeAll(options.position);
+    if (options.type === 'over') ToastMeClass.removeAll(options);
 
     this.options = options;
     this.content = content;
     this.domNode = this.createToastNode(action);
     ToastMeClass
-      .getContainer(options.position)
+      .getContainer(options)
       .appendChild(this.domNode);
     this.startTimer();
   }
@@ -60,7 +61,7 @@ export default class ToastMeClass {
 
   domNode: Element;
 
-  createToastNode(action?: ToastActionType) {
+  createToastNode(action?: ToastActionType): Element {
     const node = document.createElement('div');
     setClass(node, styles.toast);
 
@@ -70,10 +71,7 @@ export default class ToastMeClass {
     node.appendChild(messageNode);
     node.title = this.content;
 
-    setClass(node, [
-      this.options.toastClass,
-      this.options.position === 'bottom' && styles.toastBottom,
-    ]);
+    setClass(node, [this.options.toastClass]);
 
     if (action) {
       const actionNode = document.createElement('button');

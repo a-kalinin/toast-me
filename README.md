@@ -121,6 +121,7 @@ Default options preset (all available options with their default values):
 ```javascript
 {
   position: 'top',
+  type: 'over',
   toastClass: '',
   removedToastClass: '',
   closeable: true,
@@ -129,6 +130,9 @@ Default options preset (all available options with their default values):
 }
 ```
 * `position` - *string*, one of `"top"` `"bottom"`. Default `"top"`.
+* `type` - *string*, one of `"over"` `"chain"`. When `"chain"` - all messages shown in line,
+and when `"over"` - message covers previous. Default `"over"`. NOTE: when you use
+toasts of different types in one app - that could cause toast display collisions.
 * `toastClass` - *string*, CSS class name for toast node, can be used for custom toast styling.
 Default `""` - empty string
 * `closeable` - *boolean*, enables/hides "close" button on toast. Default `true`

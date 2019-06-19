@@ -1,15 +1,3 @@
-.container{
-  position: fixed;
-  width: 100%;
-  color: #fff;
-
-  &.top{
-    top: 0;
-  }
-  &.bottom{
-    bottom: 0;
-  }
-}
 
 .toast {
   height: 48px;
@@ -21,28 +9,100 @@
   justify-content: stretch;
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 4px;
-  position: absolute;
-  top: 12px;
   left: 50%;
-  animation: toast-in-top 300ms ease-out forwards;
-
-  &.remove{
-    transform: translate(-50%, 0);
-    animation: toast-out 200ms forwards;
-  }
+  flex-shrink: 0;
 
   &.error{
     background-color: #D40D00;
   }
 }
 
-.toastBottom{
-  top: auto;
-  bottom: 30px;
-  animation: toast-in-bottom 300ms ease-out forwards;
+.container{
+  position: fixed;
+  width: 100%;
+  height: 0;
+  color: #fff;
+
+  &.over{
+  }
+
+  &.chain{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &.top{
+      flex-direction: column-reverse;
+    }
+
+    &.bottom{
+      flex-direction: column;
+    }
+  }
+
+  &.top{
+    top: 0;
+  }
+
+  &.bottom{
+    bottom: 0;
+  }
+
+
+  &.top.over .toast{
+    position: absolute;
+    top: 12px;
+    animation: toast-in-top-over 300ms ease-out forwards;
+
+    &.remove{
+      transform: translate(-50%, 0);
+      animation: toast-out 400ms forwards;
+    }
+  }
+
+  &.bottom.over .toast{
+    position: absolute;
+    bottom: 30px;
+    animation: toast-in-bottom-over 300ms ease-out forwards;
+
+    &.remove{
+      transform: translate(-50%, 0);
+      animation: toast-out 400ms forwards;
+    }
+  }
+
+  &.top.chain .toast{
+    margin-top: 12px;
+    animation: toast-in-chain 400ms ease-out none;
+    max-height: 100px;
+
+    &.remove{
+      transition: margin-top 200ms 200ms, max-height 200ms 200ms, opacity 200ms;
+      margin-top: 0;
+      opacity: 0;
+      max-height: 0;
+    }
+  }
+
+  &.bottom.chain .toast{
+    margin-bottom: 12px;
+    animation: toast-in-chain 400ms ease-out none;
+    max-height: 100px;
+
+    &:last-child{
+      margin-bottom: 30px;
+    }
+
+    &.remove{
+      transition: margin-bottom 200ms 200ms, max-height 200ms 200ms, opacity 200ms;
+      margin-bottom: 0;
+      opacity: 0;
+      max-height: 0;
+    }
+  }
 }
 
-@keyframes toast-in-top{
+@keyframes toast-in-top-over{
   from{
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -53,7 +113,7 @@
   }
 }
 
-@keyframes toast-in-bottom{
+@keyframes toast-in-bottom-over{
   from{
     transform: translate(-50%, 50%);
     opacity: 0;
@@ -64,11 +124,30 @@
   }
 }
 
-@keyframes toast-out{
-  from{
+@keyframes toast-in-chain{
+  0%{
+    max-height: 0;
+    opacity: 0;
+  }
+  25%{
+    max-height: 100px;
+    opacity: 0;
+  }
+  100%{
     opacity: 1;
   }
-  to{
+}
+
+@keyframes toast-out{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    max-height: 100px;
+    opacity: 0;
+  }
+  100%{
+    max-height: 0;
     opacity: 0;
   }
 }
