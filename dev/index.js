@@ -19,7 +19,7 @@ createNode('button')
   .putInto(createNode('p').putIntoDoc().node);
 
 createNode('button')
-  .html('I am custom, try me!')
+  .html('I am customized, try me!')
   .on(
     'click',
     () => toast(

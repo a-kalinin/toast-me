@@ -8,12 +8,11 @@ import type { ToastActionType, ToastOptionsType } from './types';
 export default class ToastMeClass {
   static getContainer(position): Element {
     const onBottom = position === 'bottom';
-    const selector = `.${styles.container} ${onBottom ? `.${styles.bottom}` : ''}`;
+    const selector = `.${styles.container}.${onBottom ? styles.bottom : styles.top}`;
     let node = document.querySelector(selector);
     if (!node) {
       node = document.createElement('div');
-      node.classList.add(styles.container);
-      if (onBottom) node.classList.add(styles.bottom);
+      setClass(node, [styles.container, onBottom ? styles.bottom : styles.top]);
       document.body.appendChild(node);
     }
     return node;
@@ -71,36 +70,29 @@ export default class ToastMeClass {
     node.appendChild(messageNode);
     node.title = this.content;
 
-    if (this.options && this.options.toastClass) {
-      setClass(node, this.options.toastClass);
-    }
-
-    if (this.options && this.options.position === 'bottom') {
-      setClass(node, styles.toastBottom);
-    }
+    setClass(node, [
+      this.options.toastClass,
+      this.options.position === 'bottom' && styles.toastBottom,
+    ]);
 
     if (action) {
       const actionNode = document.createElement('button');
-      setClass(actionNode, styles.action);
-      setClass(actionNode, styles.button);
-      if (action.class) {
-        setClass(actionNode, action.class);
-      }
+      setClass(actionNode, [styles.action, styles.button, action.class]);
+      actionNode.title = action.label;
       actionNode.textContent = action.label;
       actionNode.addEventListener('click', () => {
         action.action();
         this.close();
       });
-      actionNode.title = action.label;
       node.appendChild(actionNode);
     }
 
     const closeNode = document.createElement('button');
-    setClass(closeNode, styles.close);
-    setClass(closeNode, styles.button);
-    if (this.options && !this.options.closeable) {
-      setClass(closeNode, styles.hidden);
-    }
+    setClass(closeNode, [
+      styles.close,
+      styles.button,
+      !this.options.closeable && styles.hidden,
+    ]);
     closeNode.title = 'Close';
     closeNode.addEventListener('click', () => this.close());
     node.appendChild(closeNode);
@@ -115,10 +107,7 @@ export default class ToastMeClass {
     this.stopTimer();
     if (!this.domNode) return;
 
-    setClass(this.domNode, styles.remove);
-    if (this.options.removedToastClass) {
-      setClass(this.domNode, this.options.removedToastClass);
-    }
+    setClass(this.domNode, [styles.remove, this.options.removedToastClass]);
 
     setTimeout(
       () => { this.domNode.remove(); },
