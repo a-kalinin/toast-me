@@ -32,7 +32,9 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 
 ## Features
 
-* Exported in a [umd](https://github.com/umdjs/umd) format so works everywhere.
+* Exported in a [umd](https://github.com/umdjs/umd) format so works everywhere
+* Fully compatible with popular frameworks, such as
+  __React__, __Vue__, __Angular__, __jQuery__, etc
 * Customizable
 * Light-weight (15kB until gzip, 5kB zipped)
 * Supports actions' button inside toast
