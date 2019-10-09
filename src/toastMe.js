@@ -126,4 +126,11 @@ export default class ToastMeClass {
   }
 }
 
-export { ToastOptions };
+function removeAllToasts(options: ContainerOptionsType) {
+  ToastMeClass.removeAll(options);
+}
+
+export {
+  ToastOptions,
+  removeAllToasts,
+};

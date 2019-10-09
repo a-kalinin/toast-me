@@ -1,11 +1,12 @@
 // @flow
-import ToastMeClass, { ToastOptions } from './toastMe';
+import ToastMeClass, { ToastOptions, removeAllToasts } from './toastMe';
 
 import type { ToastActionType, ToastOptionsType } from './types';
 
 export {
   ToastOptions,
   ToastMeClass,
+  removeAllToasts,
 };
 
 export default function (

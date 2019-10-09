@@ -14,13 +14,13 @@
     "url": "https://github.com/a-kalinin/toast-me.git"
   },
   "keywords": [
-    "webpack",
     "es6",
-    "library",
-    "universal",
-    "umd",
+    "react",
+    "vue",
+    "web",
+    "bubble",
     "toast",
-    "commonjs",
+    "popup",
     "notify",
     "error",
     "notification"

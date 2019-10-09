@@ -182,6 +182,11 @@ import { ToastMeClass } from 'toast-me';
 
 ToastMeClass.removeAll('bottom');
 ```
+This method has separate simplified alias
+```js
+import { removeAllToasts } from 'toast-me';
+removeAllToasts('bottom')
+```
 
 ## Contributing
 
