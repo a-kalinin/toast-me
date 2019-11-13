@@ -7,7 +7,8 @@
     "build": "webpack --env build --config scripts/config/webpack.config.prod.js",
     "run-dev": "node scripts/dev-server",
     "watch": "webpack --colors --watch --env dev --config scripts/config/webpack.config.devLib.js",
-    "test": "node scripts/test.js --env=jsdom --config jest.config.js"
+    "test": "node scripts/test.js --env=jsdom --config jest.config.js",
+    "test-ci": "node scripts/test.js --env=jsdom --config jest.config.js --coverage --runInBand"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "flow-bin": "^0.97.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.9",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
     "jsdom": "11.11.0",
@@ -74,5 +76,10 @@
     "sourceMap": false,
     "instrument": false
   },
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test-ci"
+    }
+  }
 }

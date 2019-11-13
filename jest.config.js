@@ -15,7 +15,7 @@ module.exports = {
     '**/+(*).(spec|test).{js,jsx,mjs}',
     '**/__tests__/**/+(*.)(spec|test).{js,jsx,mjs}',
   ],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',

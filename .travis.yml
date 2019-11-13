@@ -5,6 +5,7 @@ node_js:
 before_install:
 - npm config set spin false
 before_deploy:
+#- yarn test
 - yarn build
 deploy:
   provider: npm

@@ -6,9 +6,7 @@
   "plugins": [],
   "env": {
     "test": {
-      "plugins": [
-        ["istanbul"]
-      ]
+      "plugins": []
     }
   }
 }
