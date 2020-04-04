@@ -6,16 +6,24 @@ import styles from './index.scss';
 import type { ToastActionType, ToastOptionsType, ContainerOptionsType } from './types';
 
 export default class ToastMeClass {
-  static getContainer({ position = 'top', type = 'over' }: ContainerOptionsType): Element {
+  static getContainer({
+    position = 'top',
+    type = 'over',
+    containerClass = '',
+    useUniqueContainer = false,
+  }: ContainerOptionsType): Element {
     const positionClass = position === 'bottom' ? styles.bottom : styles.top;
     const typeClass = type === 'chain' ? styles.chain : styles.over;
     const selector = `.${styles.container}.${positionClass}.${typeClass}`;
-    let node = document.querySelector(selector);
+
+    let node = useUniqueContainer ? null : document.querySelector(selector);
     if (!node) {
       node = document.createElement('div');
-      setClass(node, [styles.container, positionClass, typeClass]);
       document.body.appendChild(node);
+    } else {
+      node.className = '';
     }
+    setClass(node, [styles.container, positionClass, typeClass, containerClass]);
     return node;
   }
 

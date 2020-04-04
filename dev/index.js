@@ -62,3 +62,13 @@ createNode('button')
   )
   .putInto(createNode('p').putIntoDoc().node);
 
+createNode('button')
+  .html('And I have styled (semi-transparent) container!')
+  .on(
+    'click',
+    () => {
+      toast('I am ghost! 0_0', { containerClass: styles.customContainer, useUniqueContainer: true });
+    },
+  )
+  .putInto(createNode('p').putIntoDoc().node);
+

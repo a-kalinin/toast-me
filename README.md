@@ -36,7 +36,7 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 * Fully compatible with popular frameworks, such as
   __React__, __Vue__, __Angular__, __jQuery__, etc
 * Customizable
-* Light-weight (15kB until gzip, 5kB zipped)
+* Light-weight (17kB until gzip, 6kB zipped)
 * Supports actions' button inside toast
 * Closeable
 * Pauses toast's timer on hover
@@ -126,6 +126,8 @@ Default options preset (all available options with their default values):
   type: 'over',
   toastClass: '',
   removedToastClass: '',
+  containerClass: '',
+  useUniqueContainer: false,
   closeable: true,
   timeoutOnRemove: 1000,
   duration: 5000,
@@ -137,6 +139,14 @@ and when `"over"` - message covers previous. Default `"over"`. NOTE: when you us
 toasts of different types in one app - that could cause toast display collisions.
 * `toastClass` - *string*, CSS class name for toast node, can be used for custom toast styling.
 Default `""` - empty string
+* `removedToastClass` - *string*, CSS class name for removed toast node, can be used for custom CSS 
+animation or styling. Default `""` - empty string
+* `containerClass` - *string*, CSS class name for toast's container node, can be used for custom
+ container styling. Once it is set, container node will have that class (classname won't be erased
+ on next toast creating). If you want prevent this behaviour - set `useUniqueContainer` option
+ to `true` when set `containerClass`. Default `""` - empty string
+* `useUniqueContainer` - *boolean*, create new toast's container node, instead of re-using existing
+ one, if it is presented. Default `false`
 * `closeable` - *boolean*, enables/hides "close" button on toast. Default `true`
 * `timeoutOnRemove` - *number*, time in ms, till node should be removed from DOM after toast hides.
 Can be useful when you change hide animation by CSS and set new animation duration.

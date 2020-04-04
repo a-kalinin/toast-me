@@ -7,6 +7,8 @@ export type ContainerType = 'chain' | 'over';
 export type ContainerOptionsType = {
   position: PositionType,
   type: ContainerType,
+  containerClass?: string,
+  useUniqueContainer?: boolean,
 };
 
 export type ToastOptionsType = {
@@ -14,6 +16,8 @@ export type ToastOptionsType = {
   type?: ContainerType,
   toastClass?: string,
   removedToastClass?: string,
+  containerClass?: string,
+  useUniqueContainer?: boolean,
   closeable?: boolean,
   showAll?: boolean,
   timeoutOnRemove?: number,
