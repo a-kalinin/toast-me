@@ -78,7 +78,7 @@ toast(
   {
     label: 'Confirm',
     action: () => alert('Cool!'),
-    class: 'my-custom-class', // optional
+    class: 'my-custom-class', // optional, CSS class name for action button
   },
 );
 ```
