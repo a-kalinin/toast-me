@@ -72,3 +72,13 @@ createNode('button')
   )
   .putInto(createNode('p').putIntoDoc().node);
 
+createNode('button')
+  .html('I have HTML content.')
+  .on(
+    'click',
+    () => {
+      toast('Oh, no way! HTML tags inside! &#10132; <button>&#9787;</button>', { useUnsafeHtmlContent: true });
+    },
+  )
+  .putInto(createNode('p').putIntoDoc().node);
+

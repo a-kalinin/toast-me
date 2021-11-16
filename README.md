@@ -58,6 +58,8 @@ import toast from 'toast-me';
 ##### Use
 ```javascript
 toast('My message');
+// or with the instance
+const toastInstance = toast('My message');
 ```
 
 ##### Use with own customization
@@ -95,6 +97,14 @@ toast(
 );
 ```
 
+##### Use with HTML
+```javascript
+toast(
+  '<i>My message</i> &#9787;',
+  { useUnsafeHtmlContent: true },
+);
+```
+
 ## Toast function arguments
 ```javascript
 toast(message, [options, [action]]);
@@ -120,8 +130,8 @@ If you don't need to set options, but need to pass an action - pass `null` inste
 
 #### Accepted options
 Default options preset (all available options with their default values):
-```javascript
-{
+```js
+const defaults = {
   position: 'top',
   type: 'over',
   toastClass: '',
@@ -147,6 +157,7 @@ animation or styling. Default `""` - empty string
  to `true` when set `containerClass`. Default `""` - empty string
 * `useUniqueContainer` - *boolean*, create new toast's container node, instead of re-using existing
  one, if it is presented. Default `false`
+* `useUnsafeHtmlContent` - *boolean*, allows passing HTML string as content. Default `false`
 * `closeable` - *boolean*, enables/hides "close" button on toast. Default `true`
 * `timeoutOnRemove` - *number*, time in ms, till node should be removed from DOM after toast hides.
 Can be useful when you change hide animation by CSS and set new animation duration.
