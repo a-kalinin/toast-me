@@ -77,11 +77,12 @@ export default class ToastMeClass {
     setClass(messageNode, styles.message);
     if (this.options.useUnsafeHtmlContent) {
       messageNode.innerHTML = this.content;
+      node.appendChild(messageNode);
     } else {
       messageNode.textContent = this.content;
+      node.appendChild(messageNode);
+      node.title = this.content;
     }
-    node.appendChild(messageNode);
-    node.title = this.content;
 
     setClass(node, [this.options.toastClass]);
 

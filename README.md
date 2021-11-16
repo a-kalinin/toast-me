@@ -105,6 +105,18 @@ toast(
 );
 ```
 
+##### Use with React
+```javascript
+const uniqId = 'messageRoot_' + Math.random().toString().slice(2);
+
+toast(`<div id="${uniqId}" />`, { useUnsafeHtmlContent: true });
+
+ReactDOM.render(
+  <div>My message</div>,
+  document.getElementById(uniqId)
+)
+```
+
 ## Toast function arguments
 ```javascript
 toast(message, [options, [action]]);

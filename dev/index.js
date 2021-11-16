@@ -1,5 +1,7 @@
 'use strict';
+import React from 'react';
 import { createNode } from 'helper';
+import ReactDOM from 'react-dom';
 import toast, { ToastOptions } from 'toast-me.js';
 
 import styles from './style.scss';
@@ -77,7 +79,40 @@ createNode('button')
   .on(
     'click',
     () => {
-      toast('Oh, no way! HTML tags inside! &#10132; <button>&#9787;</button>', { useUnsafeHtmlContent: true });
+      toast('Oh, no way! HTML tags inside! &#10132; <button style="font-size: 22px;">&#9787;</button>', { useUnsafeHtmlContent: true });
+    },
+  )
+  .putInto(createNode('p').putIntoDoc().node);
+
+createNode('style')
+  .html('@keyframes rotate {from { transform: rotateY(0deg); } to { transform: rotateY(360deg); }}')
+  .putIntoDoc();
+
+createNode('button')
+  .html('I have React content. And animation.')
+  .on(
+    'click',
+    () => {
+      const uniqId = 'messageRoot_' + Math.random().toString().slice(2);
+
+      toast(`<div id="${uniqId}" />`, { useUnsafeHtmlContent: true });
+
+      const reactMessage = (
+        <div>
+          React? This is real magic!
+          <span
+            style={{
+              fontSize: 22,
+              display: 'inline-block',
+              animation: '2s infinite rotate',
+            }}
+          >
+            &#9787;
+          </span>
+        </div>
+      );
+
+      ReactDOM.render(reactMessage, document.getElementById(uniqId))
     },
   )
   .putInto(createNode('p').putIntoDoc().node);
