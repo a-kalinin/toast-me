@@ -75,7 +75,11 @@ export default class ToastMeClass {
 
     const messageNode = document.createElement('div');
     setClass(messageNode, styles.message);
-    messageNode.textContent = this.content;
+    if (this.options.useUnsafeHtmlContent) {
+      messageNode.innerHTML = this.content;
+    } else {
+      messageNode.textContent = this.content;
+    }
     node.appendChild(messageNode);
     node.title = this.content;
 

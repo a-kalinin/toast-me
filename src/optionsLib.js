@@ -14,6 +14,7 @@ const ToastOptions: { [string]: ToastOptionsType } = {
     removedToastClass: '',
     containerClass: '',
     useUniqueContainer: false,
+    useUnsafeHtmlContent: false,
     closeable: true,
     timeoutOnRemove: DEFAULT_TIMEOUT_BEFORE_REMOVE,
     duration: DEFAULT_SHOW_DURATION,

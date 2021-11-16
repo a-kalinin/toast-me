@@ -18,6 +18,7 @@ export type ToastOptionsType = {
   removedToastClass?: string,
   containerClass?: string,
   useUniqueContainer?: boolean,
+  useUnsafeHtmlContent?: boolean,
   closeable?: boolean,
   showAll?: boolean,
   timeoutOnRemove?: number,
