@@ -1,6 +1,5 @@
 # toast-me
 [![npm version](https://badge.fury.io/js/toast-me.svg)](https://badge.fury.io/js/toast-me)
-[![Build Status](https://travis-ci.org/a-kalinin/toast-me.svg?branch=master)](https://travis-ci.org/a-kalinin/toast-me)
 
 Tiny, easy to use tool to show toast-like notifications on the web page.
 
@@ -16,6 +15,8 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
   * [Use with options preset](#use-with-options-preset)
   * [Use with own customization and action button](#use-with-own-customization-and-action-button)
   * [Use with action button but no customizations](#use-with-action-button-but-no-customizations)
+  * [Use with HTML](#use-with-html)
+  * [Use with React](#use-with-react)
 * [Toast function arguments](#toast-function-arguments)
   * [Message argument](#message-argument)
   * [Options argument](#options-argument)
