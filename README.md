@@ -127,7 +127,7 @@ Function accepts three arguments:
 * `options` - toast customization options,
 * `action` - some action button options.
 
-Returns instance of ToastMeClass. You can learn method of it [here]()
+Returns instance of ToastMeClass. You can learn method of it [here](#instance-of-toastmeclass)
 
 ### Message argument
 
