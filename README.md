@@ -151,6 +151,7 @@ const defaults = {
   removedToastClass: '',
   containerClass: '',
   useUniqueContainer: false,
+  useUnsafeHtmlContent: false,
   closeable: true,
   timeoutOnRemove: 1000,
   duration: 5000,
