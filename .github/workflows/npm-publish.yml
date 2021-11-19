@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm test
       - run: npm run build
 
