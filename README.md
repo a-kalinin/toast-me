@@ -5,6 +5,8 @@ Tiny, easy to use tool to show toast-like notifications on the web page.
 
 ![Demo](https://alexkalinin.ru/works/toast-me/toast-demo.gif)
 
+You can read the [CHANGELOG](./CHANGELOG.md).
+
 ## Table of Contents
 * [Features](#features)
 * [How to use](#how-to-use)
