@@ -59,7 +59,7 @@
     "husky": "^3.0.9",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
-    "jsdom": "11.11.0",
+    "jsdom": "16.5.0",
     "jsdom-global": "3.0.2",
     "node-sass": "^7.0.0",
     "nyc": "^13.1.0",
