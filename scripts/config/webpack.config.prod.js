@@ -1,12 +1,12 @@
 /* global __dirname, require, module*/
 
-const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pkg = require('../../package.json');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 let libraryName = pkg.name;
 
@@ -42,11 +42,6 @@ const config = {
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
         test: /\.scss$/,
         use: [
           require.resolve('style-loader'),
@@ -54,8 +49,9 @@ const config = {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
             },
           },
           {
@@ -85,6 +81,7 @@ const config = {
     ]
   },
   plugins: [
+    new ESLintPlugin({ extensions: ['jsx', 'js'] }),
     new CleanWebpackPlugin(),
   ],
   resolve: {

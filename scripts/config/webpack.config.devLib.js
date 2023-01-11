@@ -1,10 +1,10 @@
 /* global __dirname, require, module*/
 
-const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const pkg = require('../../package.json');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -14,7 +14,6 @@ let libraryName = pkg.name;
 const config = {
   // bail: true,
   mode: 'development',
-  watch: true,
   watchOptions: {
     ignored: ['node_modules']
   },
@@ -39,11 +38,6 @@ const config = {
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
         test: /\.scss$/,
         use: [
           require.resolve('style-loader'),
@@ -51,8 +45,9 @@ const config = {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
             },
           },
           {
@@ -86,7 +81,7 @@ const config = {
     ]
   },
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
+    new ESLintPlugin({ extensions: ['jsx', 'js'] }),
   ],
   resolve: {
     modules: [

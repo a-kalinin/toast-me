@@ -1,16 +1,16 @@
 /* global __dirname, require, module*/
 
-const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const port = process.env.PORT || 3005;
 
-const config = [
-  {
+const config = {
     bail: true,
     mode: 'development',
     entry: resolveApp('dev/index.js'),
@@ -36,11 +36,6 @@ const config = [
           exclude: /(node_modules|bower_components)/
         },
         {
-          test: /(\.jsx|\.js)$/,
-          loader: 'eslint-loader',
-          exclude: /node_modules/
-        },
-        {
           test: /\.scss$/,
           use: [
             require.resolve('style-loader'),
@@ -48,8 +43,9 @@ const config = [
               loader: require.resolve('css-loader'),
               options: {
                 importLoaders: 1,
-                modules: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
+                modules: {
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
               },
             },
             {
@@ -83,10 +79,10 @@ const config = [
       ]
     },
     plugins: [
+      new ESLintPlugin({ extensions: ['jsx', 'js'] }),
       new HtmlWebpackPlugin({
         title: 'Test Toast-Me',
       }),
-      // new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
       modules: [
@@ -95,8 +91,12 @@ const config = [
         path.resolve('./lib'),
       ],
       extensions: ['.json', '.js']
+    },
+    devServer: {
+      watchFiles: `${resolveApp('dev')}/**/*`,
+      port: port,
+      open: true,
     }
-  },
-];
+  };
 
 module.exports = config;

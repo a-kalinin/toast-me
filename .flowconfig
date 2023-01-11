@@ -1,15 +1,13 @@
 [declarations]
 [include]
 [ignore]
-/node_modules
+<PROJECT_ROOT>/node_modules/.*
 [libs]
 [lints]
 [options]
 module.file_ext=.scss
-esproposal.class_static_fields=enable
-esproposal.class_instance_fields=enable
-esproposal.export_star_as=enable
-esproposal.decorators=ignore
+module.file_ext=.js
+module.file_ext=.jsx
 module.name_mapper.extension='css' -> '<PROJECT_ROOT>/internals/flow/CSSModule.js.flow'
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/internals/flow/CSSModule.js.flow'
 module.system.node.resolve_dirname=node_modules
