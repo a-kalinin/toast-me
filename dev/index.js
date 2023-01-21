@@ -2,9 +2,13 @@
 import React from 'react';
 import { createNode } from 'helper';
 import ReactDOM from 'react-dom';
-import toast, { ToastOptions } from 'toast-me.js';
+import toast from 'toast-me.js';
 
 import styles from './style.scss';
+
+function getNewParagraph() {
+  return createNode('p').putIntoDoc().node;
+}
 
 createNode('h1')
   .html('ToastMe')
@@ -13,12 +17,12 @@ createNode('h1')
 createNode('button')
   .html('Do not press me')
   .on('click', () => toast('Why you pressing me? :"(', 'error'))
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('Press me instead!')
   .on('click', () => toast('Yes, you did it!', { duration: 2500 }))
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('I am customized, try me!')
@@ -38,7 +42,7 @@ createNode('button')
       },
     ),
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('Maybe several messages at once?')
@@ -50,7 +54,7 @@ createNode('button')
       setTimeout(() => toast('Three', { duration: 2500 }), 800);
     },
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('Or you would like them in line?')
@@ -62,7 +66,7 @@ createNode('button')
       setTimeout(() => toast('Three', { type: 'chain', duration: 2500 }), 800);
     },
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('And I have styled (semi-transparent) container!')
@@ -72,7 +76,7 @@ createNode('button')
       toast('I am ghost! 0_0', { containerClass: styles.customContainer, useUniqueContainer: true });
     },
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('button')
   .html('I have HTML content.')
@@ -82,7 +86,7 @@ createNode('button')
       toast('Oh, no way! HTML tags inside! &#10132; <button style="font-size: 22px;">&#9787;</button>', { useUnsafeHtmlContent: true });
     },
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 
 createNode('style')
   .html('@keyframes rotate {from { transform: rotateY(0deg); } to { transform: rotateY(360deg); }}')
@@ -115,5 +119,5 @@ createNode('button')
       ReactDOM.render(reactMessage, document.getElementById(uniqId))
     },
   )
-  .putInto(createNode('p').putIntoDoc().node);
+  .putInto(getNewParagraph());
 

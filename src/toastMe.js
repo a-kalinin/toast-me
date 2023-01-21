@@ -1,7 +1,7 @@
 // @flow
 import ToastOptions, { DEFAULT_TIMEOUT_BEFORE_REMOVE, DEFAULT_SHOW_DURATION } from './optionsLib';
 import { setClass } from './helper';
-import styles from './index.scss';
+import styles from './ToastMe.scss';
 
 import type { ToastActionType, ToastOptionsType, ContainerOptionsType } from './types';
 

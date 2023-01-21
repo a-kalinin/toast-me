@@ -4,7 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+// const ESLintPlugin = require('eslint-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -38,7 +40,7 @@ const config = {
         {
           test: /\.scss$/,
           use: [
-            require.resolve('style-loader'),
+            MiniCssExtractPlugin.loader,
             {
               loader: require.resolve('css-loader'),
               options: {
@@ -51,25 +53,63 @@ const config = {
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                // Necessary for external CSS imports to work
-                // https://github.com/facebookincubator/create-react-app/issues/2677
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    overrideBrowserslist: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009',
-                  }),
-                  require('cssnano')(),
-                ],
+                postcssOptions: {
+                  plugins: [
+                    require.resolve('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      overrideBrowserslist: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                    require('cssnano')(),
+                  ]
+                },
               },
             },
-            "sass-loader",
+            require.resolve("sass-loader"),
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            // require.resolve('style-loader'),
+            // require.resolve('css-loader'),
+            // {
+            //   loader: require.resolve('css-loader'),
+            //   options: {
+            //     importLoaders: 1,
+            //     modules: {
+            //       localIdentName: '[name]__[local]___[hash:base64:5]'
+            //     }
+            //   },
+            // },
+            // {
+            //   loader: require.resolve('postcss-loader'),
+            //   options: {
+            //     postcssOptions: {
+            //       plugins: [
+            //         require.resolve('postcss-flexbugs-fixes'),
+            //         autoprefixer({
+            //           overrideBrowserslist: [
+            //             '>1%',
+            //             'last 4 versions',
+            //             'Firefox ESR',
+            //             'not ie < 9', // React doesn't support IE8 anyway
+            //           ],
+            //           flexbox: 'no-2009',
+            //         }),
+            //         require('cssnano')(),
+            //       ]
+            //     },
+            //   },
+            // },
+            // require.resolve("sass-loader"),
           ],
         },
         {
@@ -79,7 +119,8 @@ const config = {
       ]
     },
     plugins: [
-      new ESLintPlugin({ extensions: ['jsx', 'js'] }),
+      // new ESLintPlugin({ extensions: ['jsx', 'js'] }),
+      new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         title: 'Test Toast-Me',
       }),
