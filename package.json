@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --env build --config scripts/config/webpack.config.prod.js",
     "run-dev": "node scripts/dev-server",
-    "watch": "webpack --colors --watch --env dev --config scripts/config/webpack.config.devLib.js",
+    "watch": "webpack --watch --env dev --config scripts/config/webpack.config.devLib.js",
     "test-watch": "node scripts/test.js --env=jsdom --config jest.config.js",
     "test": "node scripts/test.js --env=jsdom --config jest.config.js --coverage --runInBand && flow"
   },
@@ -36,6 +36,8 @@
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-syntax-flow": "^7.18.6",
+    "@babel/plugin-transform-react-jsx": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-flow": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
@@ -70,7 +72,7 @@
     "react-dom": "^17.0.2",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
-    "style-loader": "^0.23.1",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
