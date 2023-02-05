@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --env build --config scripts/config/webpack.config.prod.js",
     "run-dev": "node scripts/dev-server",
+    "run-demo": "cross-env DEMO=true PORT=3006 node scripts/dev-server",
     "watch": "webpack --watch --env dev --config scripts/config/webpack.config.devLib.js",
     "test-watch": "node scripts/test.js --env=jsdom --config jest.config.js",
     "test": "node scripts/test.js --env=jsdom --config jest.config.js --coverage --runInBand && flow"
@@ -49,7 +50,7 @@
     "babel-register": "^7.0.0-beta.3",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.1",
-    "cross-env": "^5.2.0",
+    "cross-env": "^5.2.1",
     "css-loader": "^6.7.3",
     "cssnano": "^5.1.14",
     "eslint": "^8.31.0",
@@ -73,6 +74,7 @@
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
+    "toast-me": "^1.4.14",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",

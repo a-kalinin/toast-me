@@ -5,6 +5,7 @@ const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const pkg = require('../../package.json');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -20,7 +21,7 @@ const config = {
   entry: resolveApp('src/index.js'),
   devtool: 'source-map',
   output: {
-    path: resolveApp('dev'),
+    path: resolveApp('dev/lib'),
     filename: libraryName + '.js',
     library: libraryName,
     libraryTarget: 'umd',
@@ -81,6 +82,9 @@ const config = {
   },
   plugins: [
     new ESLintPlugin({ extensions: ['jsx', 'js'] }),
+    new webpack.DefinePlugin({
+      'VERSION': JSON.stringify(pkg.version)
+    }),
   ],
   resolve: {
     modules: [

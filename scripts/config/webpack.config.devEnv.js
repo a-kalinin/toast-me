@@ -15,7 +15,7 @@ const port = process.env.PORT || 3005;
 const config = {
     bail: true,
     mode: 'development',
-    entry: resolveApp('dev/index.js'),
+    entry: resolveApp(process.env.DEMO ? 'dev/demo.js' : 'dev/index.js'),
     devtool: 'source-map',
     // devtool: 'eval',
     output: {
