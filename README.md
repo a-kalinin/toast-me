@@ -268,3 +268,7 @@ When you load all dependencies, you able to run several commands:
 1. [Yarn](https://yarnpkg.com/lang/en/)
 1. [SASS](http://sass-lang.com/)
 1. [Jest](https://jestjs.io/docs/en/getting-started)
+
+## Thanks for contributing:
+[@TV-T](https://github.com/TV-T)
+
