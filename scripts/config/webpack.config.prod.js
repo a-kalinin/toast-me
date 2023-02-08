@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pkg = require('../../package.json');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack');
 
 let libraryName = pkg.name;
 
@@ -82,6 +83,9 @@ const config = {
   plugins: [
     new ESLintPlugin({ extensions: ['jsx', 'js'] }),
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'VERSION': JSON.stringify(pkg.version)
+    }),
   ],
   resolve: {
     modules: [

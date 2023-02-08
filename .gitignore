@@ -35,5 +35,5 @@ npm-debug.log
 .DS_Store
 
 
-/dev/toast-me.*
+/dev/lib/toast-me.*
 /dev/main.css*

@@ -22,6 +22,20 @@ p > button {
   }
 }
 
+.header{
+  margin-bottom: 5px;
+}
+
+.subheader{
+  margin-top: 0;
+}
+
+.notActual{
+  margin-top: 0;
+  margin-bottom: 0;
+  color: red;
+}
+
 .customToast{
   background-color: #0B8AFF;
   border-radius: 2px;
