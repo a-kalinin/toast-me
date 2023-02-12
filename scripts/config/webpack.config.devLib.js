@@ -46,7 +46,7 @@ const config = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]'
+                localIdentName: 'TM-[local]_[hash:base64:4]'
               }
             },
           },
