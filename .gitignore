@@ -36,4 +36,5 @@ npm-debug.log
 
 
 /dev/toast-me.*
+/dev/lib/toast-me.*
 /dev/main.css*
