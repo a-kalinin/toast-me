@@ -3,6 +3,7 @@
   "version": "1.4.14",
   "description": "Creates toast messages",
   "main": "lib/toast-me.min.js",
+  "types": "toast-me.d.ts",
   "scripts": {
     "build": "webpack --env build --config scripts/config/webpack.config.prod.js",
     "run-dev": "node scripts/dev-server",
