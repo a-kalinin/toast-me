@@ -1,7 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.6.1
+## 1.6.2
 * Updated packages, replaced flowtype with TypeScript, Yarn with NPM
 
 ## 1.5.0
