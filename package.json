@@ -73,7 +73,7 @@
     "typescript": "^7.0.2",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.2",
+    "webpack-dev-server": "^6.0.0",
     "yargs": "^17.7.2"
   }
 }
