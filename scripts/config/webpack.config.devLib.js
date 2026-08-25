@@ -18,7 +18,7 @@ const config = {
   watchOptions: {
     ignored: ['node_modules']
   },
-  entry: resolveApp('src/index.js'),
+  entry: resolveApp('src/index.ts'),
   devtool: 'source-map',
   output: {
     path: resolveApp('dev/lib'),
@@ -34,7 +34,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /(\.jsx|\.js|\.ts|\.tsx)$/,
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/
       },
@@ -81,7 +81,7 @@ const config = {
     ]
   },
   plugins: [
-    new ESLintPlugin({ extensions: ['jsx', 'js'] }),
+    new ESLintPlugin({ extensions: ['jsx', 'js', 'ts', 'tsx'] }),
     new webpack.DefinePlugin({
       'VERSION': JSON.stringify(pkg.version)
     }),
@@ -91,7 +91,7 @@ const config = {
       path.resolve('./node_modules'),
       path.resolve('./src'),
     ],
-    extensions: ['.json', '.js']
+    extensions: ['.json', '.js', '.ts', '.tsx']
   }
 };
 

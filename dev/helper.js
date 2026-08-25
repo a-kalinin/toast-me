@@ -1,10 +1,7 @@
-// @flow
-export const createNode = (node: string | Element): CustomNode => new CustomNode(node);
+export const createNode = (node) => new CustomNode(node);
 
 export class CustomNode {
-  node: Element;
-
-  constructor(node: string | Element) {
+  constructor(node) {
     if(typeof node === 'string') {
       this.node = document.createElement(node);
     } else if (node instanceof Element) {
@@ -14,27 +11,27 @@ export class CustomNode {
     }
   }
 
-  class(className: string): CustomNode {
+  class(className) {
     this.node.className = className;
     return this;
   }
 
-  on(eventName: string, callback: Function): CustomNode {
+  on(eventName, callback) {
     this.node.addEventListener(eventName, callback);
     return this;
   }
 
-  off(eventName: string, callback: Function): CustomNode {
+  off(eventName, callback) {
     this.node.removeEventListener(eventName, callback);
     return this;
   }
 
-  putInto(container: Node): CustomNode {
+  putInto(container) {
     container.appendChild(this.node);
     return this;
   }
 
-  putIntoDoc(): CustomNode {
+  putIntoDoc() {
     if (!document.body) {
       throw new Error('Inaccessible context. This code should run in browser.');
     }
@@ -42,12 +39,12 @@ export class CustomNode {
     return this;
   }
 
-  html(html: string): CustomNode {
+  html(html) {
     this.node.innerHTML = html;
     return this;
   }
 
-  attr(list: {[string]: string}): CustomNode {
+  attr(list) {
     Object.keys(list).forEach(key => this.node.setAttribute(key,list[key]));
     return this;
   }

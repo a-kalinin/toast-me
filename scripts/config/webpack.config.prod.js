@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const autoprefixer = require('autoprefixer');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const pkg = require('../../package.json');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const webpack = require('webpack');
@@ -26,7 +26,7 @@ if (env === 'build') {
 const config = {
   bail: true,
   mode: mode,
-  entry: resolveApp('src/index.js'),
+  entry: resolveApp('src/index.ts'),
   output: {
     path: resolveApp('lib'),
     filename: outputFile,
@@ -38,7 +38,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /(\.jsx|\.js|\.ts|\.tsx)$/,
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/
       },
@@ -81,7 +81,7 @@ const config = {
     ]
   },
   plugins: [
-    new ESLintPlugin({ extensions: ['jsx', 'js'] }),
+    new ESLintPlugin({ extensions: ['jsx', 'js', 'ts', 'tsx'] }),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'VERSION': JSON.stringify(pkg.version)
@@ -92,7 +92,7 @@ const config = {
       path.resolve('./node_modules'),
       path.resolve('./src'),
     ],
-    extensions: ['.json', '.js']
+    extensions: ['.json', '.js', '.ts', '.tsx']
   }
 };
 

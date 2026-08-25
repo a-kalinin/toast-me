@@ -1,6 +1,7 @@
+import React from 'react';
 import { createNode } from './helper';
 import styles from './style.scss';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import pkg from '../package.json';
 
 function getNewParagraph() {
@@ -129,7 +130,7 @@ export default function render(toast) {
           </div>
         );
 
-        ReactDOM.render(reactMessage, document.getElementById(uniqId))
+        createRoot(document.getElementById(uniqId)).render(reactMessage)
       },
     )
     .putInto(getNewParagraph());

@@ -129,9 +129,9 @@ const config = {
       modules: [
         path.resolve('./node_modules'),
         path.resolve('./dev'),
-        path.resolve('./lib'),
+        path.resolve('./dev/lib'),
       ],
-      extensions: ['.json', '.js']
+      extensions: ['.json', '.js', '.ts', '.tsx']
     },
     devServer: {
       watchFiles: `${resolveApp('dev')}/**/*`,

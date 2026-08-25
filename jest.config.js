@@ -5,7 +5,7 @@ console.log(chalk.green('Reading jest config'));
 module.exports = {
   verbose: true,
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,mjs}',
+    'src/**/*.{js,jsx,ts,tsx,mjs}',
   ],
   setupFiles: [
     '<rootDir>/scripts/config/polyfills.js',
@@ -16,14 +16,16 @@ module.exports = {
     '**/__tests__/**/+(*.)(spec|test).{js,jsx,mjs}',
   ],
   testEnvironment: 'jsdom',
-  testURL: 'http://localhost',
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  },
   transform: {
-    '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx|ts|tsx|mjs)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.css$': '<rootDir>/scripts/config/cssTransform.js',
-    '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/scripts/config/fileTransform.js',
+    '^(?!.*\\.(js|jsx|ts|tsx|mjs|css|json)$)': '<rootDir>/scripts/config/fileTransform.js',
   },
   transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$',
+    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx|mjs)$',
   ],
   moduleNameMapper: {
     '^.+\\.(css|scss)$': 'identity-obj-proxy',
@@ -31,6 +33,8 @@ module.exports = {
   moduleFileExtensions: [
     'web.js',
     'js',
+    'ts',
+    'tsx',
     'json',
     'web.jsx',
     'jsx',
